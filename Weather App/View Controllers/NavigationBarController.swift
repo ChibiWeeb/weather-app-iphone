@@ -11,13 +11,20 @@ class NavigationBarController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        changeTabBarAppearance()
+    }
+
+    func changeTabBarAppearance() {
         let navigationBarAppearance = UINavigationBarAppearance()
         navigationBarAppearance.configureWithTransparentBackground()
+        
+        let titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navigationBarAppearance.titleTextAttributes = titleTextAttributes
         
         navigationBar.standardAppearance = navigationBarAppearance
         navigationBar.compactAppearance = navigationBarAppearance
         navigationBar.scrollEdgeAppearance = navigationBarAppearance
     }
-
 
 }

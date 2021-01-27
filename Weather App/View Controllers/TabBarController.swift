@@ -11,12 +11,14 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        let tabBarAppearance = UITabBarAppearance()
-//        tabBarAppearance.configureWithTransparentBackground()
-//
-//
-//        tabBar.standardAppearance = tabBarAppearance
-//        tabBar.unselectedItemTintColor = .white
+        
+        //Make tab bar transparent
+        tabBar.barTintColor = .clear
+        tabBar.backgroundImage = UIImage()
+        tabBar.shadowImage = UIImage()
+        
+        //Make unselected tab bar items white
+        tabBar.unselectedItemTintColor = .white
     }
 
 
