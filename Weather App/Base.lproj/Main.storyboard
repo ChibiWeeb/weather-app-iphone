@@ -35,7 +35,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="W2a-ga-PSL"/>
-                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Today" id="Yj6-rL-0U8">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="zHy-BQ-8he" customClass="NavigationButtonBarItem" customModule="Weather_App" customModuleProvider="target"/>
@@ -53,7 +53,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Q4j-vC-Ff5"/>
-                        <color key="backgroundColor" systemColor="systemBlueColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Forecast" id="z0j-Mo-Jmq">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="lu3-4Y-4pB" customClass="NavigationButtonBarItem" customModule="Weather_App" customModuleProvider="target"/>
@@ -111,8 +111,8 @@
     <resources>
         <image name="tab_forecast" width="25" height="25"/>
         <image name="tab_today" width="30" height="29"/>
-        <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>
