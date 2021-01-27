@@ -10,6 +10,7 @@
 		FA27A84325C1A79100A9C687 /* CurrentDayForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA27A84225C1A79100A9C687 /* CurrentDayForecastViewController.swift */; };
 		FA27A84825C1A82700A9C687 /* Next5DaysForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA27A84725C1A82700A9C687 /* Next5DaysForecastViewController.swift */; };
 		FA27A84B25C1B6A200A9C687 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA27A84A25C1B6A200A9C687 /* TabBarController.swift */; };
+		FA27A84F25C1C41500A9C687 /* NavigationBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA27A84E25C1C41500A9C687 /* NavigationBarController.swift */; };
 		FA96BCBA25C05C0400155DBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96BCB925C05C0400155DBB /* AppDelegate.swift */; };
 		FA96BCBC25C05C0400155DBB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96BCBB25C05C0400155DBB /* SceneDelegate.swift */; };
 		FA96BCC125C05C0400155DBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA96BCBF25C05C0400155DBB /* Main.storyboard */; };
@@ -22,6 +23,7 @@
 		FA27A84225C1A79100A9C687 /* CurrentDayForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentDayForecastViewController.swift; sourceTree = "<group>"; };
 		FA27A84725C1A82700A9C687 /* Next5DaysForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Next5DaysForecastViewController.swift; sourceTree = "<group>"; };
 		FA27A84A25C1B6A200A9C687 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		FA27A84E25C1C41500A9C687 /* NavigationBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarController.swift; sourceTree = "<group>"; };
 		FA96BCB625C05C0400155DBB /* Weather App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA96BCB925C05C0400155DBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA96BCBB25C05C0400155DBB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 				FA27A84225C1A79100A9C687 /* CurrentDayForecastViewController.swift */,
 				FA27A84725C1A82700A9C687 /* Next5DaysForecastViewController.swift */,
 				FA27A84A25C1B6A200A9C687 /* TabBarController.swift */,
+				FA27A84E25C1C41500A9C687 /* NavigationBarController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 				FA96BCC425C05C0400155DBB /* Weather_App.xcdatamodeld in Sources */,
 				FA27A84825C1A82700A9C687 /* Next5DaysForecastViewController.swift in Sources */,
 				FA27A84325C1A79100A9C687 /* CurrentDayForecastViewController.swift in Sources */,
+				FA27A84F25C1C41500A9C687 /* NavigationBarController.swift in Sources */,
 				FA96BCBA25C05C0400155DBB /* AppDelegate.swift in Sources */,
 				FA96BCBC25C05C0400155DBB /* SceneDelegate.swift in Sources */,
 				FA27A84B25C1B6A200A9C687 /* TabBarController.swift in Sources */,
