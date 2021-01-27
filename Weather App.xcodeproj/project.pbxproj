@@ -11,6 +11,7 @@
 		FA27A84825C1A82700A9C687 /* Next5DaysForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA27A84725C1A82700A9C687 /* Next5DaysForecastViewController.swift */; };
 		FA27A84B25C1B6A200A9C687 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA27A84A25C1B6A200A9C687 /* TabBarController.swift */; };
 		FA27A84F25C1C41500A9C687 /* NavigationBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA27A84E25C1C41500A9C687 /* NavigationBarController.swift */; };
+		FA27A85A25C2015A00A9C687 /* NavigationButtonBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA27A85925C2015A00A9C687 /* NavigationButtonBarItem.swift */; };
 		FA96BCBA25C05C0400155DBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96BCB925C05C0400155DBB /* AppDelegate.swift */; };
 		FA96BCBC25C05C0400155DBB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96BCBB25C05C0400155DBB /* SceneDelegate.swift */; };
 		FA96BCC125C05C0400155DBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA96BCBF25C05C0400155DBB /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 		FA27A84725C1A82700A9C687 /* Next5DaysForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Next5DaysForecastViewController.swift; sourceTree = "<group>"; };
 		FA27A84A25C1B6A200A9C687 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		FA27A84E25C1C41500A9C687 /* NavigationBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarController.swift; sourceTree = "<group>"; };
+		FA27A85925C2015A00A9C687 /* NavigationButtonBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationButtonBarItem.swift; sourceTree = "<group>"; };
 		FA96BCB625C05C0400155DBB /* Weather App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA96BCB925C05C0400155DBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA96BCBB25C05C0400155DBB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -50,10 +52,35 @@
 			children = (
 				FA27A84225C1A79100A9C687 /* CurrentDayForecastViewController.swift */,
 				FA27A84725C1A82700A9C687 /* Next5DaysForecastViewController.swift */,
-				FA27A84A25C1B6A200A9C687 /* TabBarController.swift */,
-				FA27A84E25C1C41500A9C687 /* NavigationBarController.swift */,
 			);
 			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		FA27A85625C200AF00A9C687 /* Custom Classes */ = {
+			isa = PBXGroup;
+			children = (
+				FA27A85825C2012D00A9C687 /* Navigation Bar */,
+				FA27A85725C2011300A9C687 /* Tab Bar */,
+				FA27A84125C1A67400A9C687 /* View Controllers */,
+			);
+			path = "Custom Classes";
+			sourceTree = "<group>";
+		};
+		FA27A85725C2011300A9C687 /* Tab Bar */ = {
+			isa = PBXGroup;
+			children = (
+				FA27A84A25C1B6A200A9C687 /* TabBarController.swift */,
+			);
+			path = "Tab Bar";
+			sourceTree = "<group>";
+		};
+		FA27A85825C2012D00A9C687 /* Navigation Bar */ = {
+			isa = PBXGroup;
+			children = (
+				FA27A84E25C1C41500A9C687 /* NavigationBarController.swift */,
+				FA27A85925C2015A00A9C687 /* NavigationButtonBarItem.swift */,
+			);
+			path = "Navigation Bar";
 			sourceTree = "<group>";
 		};
 		FA96BCAD25C05C0300155DBB = {
@@ -75,7 +102,7 @@
 		FA96BCB825C05C0400155DBB /* Weather App */ = {
 			isa = PBXGroup;
 			children = (
-				FA27A84125C1A67400A9C687 /* View Controllers */,
+				FA27A85625C200AF00A9C687 /* Custom Classes */,
 				FA96BCB925C05C0400155DBB /* AppDelegate.swift */,
 				FA96BCBB25C05C0400155DBB /* SceneDelegate.swift */,
 				FA96BCBF25C05C0400155DBB /* Main.storyboard */,
@@ -163,6 +190,7 @@
 				FA27A84F25C1C41500A9C687 /* NavigationBarController.swift in Sources */,
 				FA96BCBA25C05C0400155DBB /* AppDelegate.swift in Sources */,
 				FA96BCBC25C05C0400155DBB /* SceneDelegate.swift in Sources */,
+				FA27A85A25C2015A00A9C687 /* NavigationButtonBarItem.swift in Sources */,
 				FA27A84B25C1B6A200A9C687 /* TabBarController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
