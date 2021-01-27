@@ -10,14 +10,16 @@ import UIKit
 class Gradient {
     private let gradientLayer: CAGradientLayer
     
-    init(gradientName: GradientNames, frameBounds: CGRect) {
+    
+    private init(gradientName: GradientNames, frameBounds: CGRect) {
         gradientLayer = CAGradientLayer()
         gradientLayer.colors = gradientName.gradientColors
         gradientLayer.frame = frameBounds
     }
     
-    func getGradientLayer() -> CAGradientLayer {
-        return gradientLayer
+    static func addBackgroundColor(to view: UIView, gradientName:GradientNames) {
+        let gradientLayer = Gradient(gradientName: gradientName,frameBounds: view.bounds).gradientLayer
+        view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     enum GradientNames {
