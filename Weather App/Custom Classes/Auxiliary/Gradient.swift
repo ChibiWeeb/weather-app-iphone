@@ -8,18 +8,21 @@
 import UIKit
 
 class Gradient {
-    private let gradientLayer: CAGradientLayer
     
+    let gradientLayer: CAGradientLayer
     
-    private init(gradientName: GradientNames, frameBounds: CGRect) {
+    init(gradientName: GradientNames) {
         gradientLayer = CAGradientLayer()
         gradientLayer.colors = gradientName.gradientColors
-        gradientLayer.frame = frameBounds
     }
     
-    static func addBackgroundColor(to view: UIView, gradientName:GradientNames) {
-        let gradientLayer = Gradient(gradientName: gradientName,frameBounds: view.bounds).gradientLayer
+    func addBackgroundColor(to view: UIView) {
+        gradientLayer.frame = view.bounds
         view.layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    func updateFrameBounds(to newFrameBounds: CGRect) {
+        gradientLayer.frame = newFrameBounds
     }
     
     enum GradientNames {

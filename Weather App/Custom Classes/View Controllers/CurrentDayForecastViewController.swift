@@ -8,10 +8,18 @@
 import UIKit
 
 class CurrentDayForecastViewController: UIViewController {
+    var gradient: Gradient!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        Gradient.addBackgroundColor(to: view, gradientName: Gradient.GradientNames.background)
+        gradient = Gradient(gradientName: Gradient.GradientNames.background)
+        gradient.addBackgroundColor(to: view)
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+        gradient.updateFrameBounds(to: view.frame)
     }
 }
