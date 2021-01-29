@@ -47,6 +47,12 @@ extension Next5DaysForecastViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        return Constants.rowHeight
+    }
+}
+
+extension Next5DaysForecastViewController {
+    struct Constants {
+        static let rowHeight: CGFloat = 66
     }
 }
