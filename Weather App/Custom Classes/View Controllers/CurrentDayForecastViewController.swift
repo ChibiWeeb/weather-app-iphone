@@ -8,7 +8,7 @@
 import UIKit
 
 class CurrentDayForecastViewController: UIViewController {
-    var gradient: Gradient!
+    private var gradient: Gradient!
 
     override func viewDidLoad() {
         super.viewDidLoad()
