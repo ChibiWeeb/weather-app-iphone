@@ -51,12 +51,27 @@
                     <view key="view" contentMode="scaleToFill" id="lXo-8G-bvD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yV5-Ze-Rds">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Q4j-vC-Ff5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yV5-Ze-Rds" firstAttribute="leading" secondItem="Q4j-vC-Ff5" secondAttribute="leading" id="Rl8-Uf-riI"/>
+                            <constraint firstItem="yV5-Ze-Rds" firstAttribute="top" secondItem="Q4j-vC-Ff5" secondAttribute="top" id="q4v-N0-xE7"/>
+                            <constraint firstItem="Q4j-vC-Ff5" firstAttribute="trailing" secondItem="yV5-Ze-Rds" secondAttribute="trailing" id="qy5-JT-SDw"/>
+                            <constraint firstItem="Q4j-vC-Ff5" firstAttribute="bottom" secondItem="yV5-Ze-Rds" secondAttribute="bottom" id="tK4-ph-tcy"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Forecast" id="z0j-Mo-Jmq">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="lu3-4Y-4pB" customClass="NavigationButtonBarItem" customModule="Weather_App" customModuleProvider="target"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="yV5-Ze-Rds" id="mJV-Fo-wqc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UnA-qY-OXN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

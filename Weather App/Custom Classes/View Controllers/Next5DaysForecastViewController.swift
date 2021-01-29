@@ -10,16 +10,43 @@ import UIKit
 class Next5DaysForecastViewController: UIViewController {
     var gradient: Gradient!
     
+    @IBOutlet var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         gradient = Gradient(gradientName: Gradient.GradientNames.background)
         gradient.addBackgroundColor(to: view)
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        tableView.register(
+            UINib(nibName: "ForecastTableViewCell", bundle: nil),
+            forCellReuseIdentifier: "ForecastTableViewCell"
+        )
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         
         gradient.updateFrameBounds(to: view.frame)
+    }
+}
+
+extension Next5DaysForecastViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ForecastTableViewCell", for: indexPath)
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
     }
 }
