@@ -1,4 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="false" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="FutureWeather" representedClassName="FutureWeather" syncable="YES">
+        <attribute name="conditionDescription" optional="YES" attributeType="String"/>
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="icon" optional="YES" attributeType="String"/>
+        <attribute name="temperature" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="futureWeathers" inverseEntity="Location"/>
+    </entity>
+    <entity name="Location" representedClassName="Location" syncable="YES">
+        <attribute name="city" optional="YES" attributeType="String"/>
+        <attribute name="country" optional="YES" attributeType="String"/>
+        <relationship name="futureWeathers" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="FutureWeather" inverseName="location" inverseEntity="FutureWeather"/>
+        <relationship name="todaysWeather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="TodaysWeather" inverseName="location" inverseEntity="TodaysWeather"/>
+    </entity>
+    <entity name="TodaysWeather" representedClassName="TodaysWeather" syncable="YES">
+        <attribute name="cloudiness" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="conditionMain" optional="YES" attributeType="String"/>
+        <attribute name="humidity" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="temperature" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="windDegrees" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="windSpeed" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="todaysWeather" inverseEntity="Location"/>
+    </entity>
+    <elements>
+        <element name="Location" positionX="138.7730102539062" positionY="2.75140380859375" width="128" height="89"/>
+        <element name="TodaysWeather" positionX="135" positionY="36" width="128" height="134"/>
+        <element name="FutureWeather" positionX="162" positionY="81" width="128" height="104"/>
+    </elements>
 </model>

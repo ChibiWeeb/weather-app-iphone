@@ -13,6 +13,8 @@ class Next5DaysForecastViewController: UIViewController {
     
     private var gradient: Gradient!
     
+    private let forecastService = ForecastService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -27,23 +29,7 @@ class Next5DaysForecastViewController: UIViewController {
             forCellReuseIdentifier: "ForecastTableViewCell"
         )
         
-        //TEMPORARY
-        //TODO: Seperate service class L15-1:42:30
-        let url = URL(string: "https://api.openweathermap.org/data/2.5/forecast?q=tbilisi&units=metric&appid=cf270b8b540ec2bbdc4c6aa1093b0653")!
-        let request = URLRequest(url: url)
-        
-        let task = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
-            if let data = data {
-                let decoder = JSONDecoder()
-                do {
-                    let result = try decoder.decode(ForecastResponse.self, from: data)
-                    print(result)
-                } catch {
-                    print(error)
-                }
-            }
-        })
-        task.resume()
+        forecastService.getForecast(for: "Tokyo")
     }
     
     override func viewWillLayoutSubviews() {
