@@ -38,13 +38,17 @@ class ForecastService {
                     let decoder = JSONDecoder()
                     do {
                         let result = try decoder.decode(ForecastResponse.self, from: data)
-                        DatabaseManager.addForecastToDatabase(from: result, in: self.databaseContext)
+                        DatabaseManager.updateForecast(with: result, in: self.databaseContext)
                     } catch {
                         print(error)
                     }
+                } else {
+                    print("No Data")
                 }
             })
             task.resume()
+        } else {
+            print("Invalid Parameters")
         }
     }
 }

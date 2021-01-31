@@ -58,25 +58,56 @@ final class DatabaseManager {
         }
     }
     
-    static func addForecastToDatabase(from result: ForecastResponse, in context: NSManagedObjectContext) {
+    static func addLocation(id: Int32, city: String, country: String, in context: NSManagedObjectContext) {
         let location = Location(context: context)
-        location.country = Locale(identifier: "en_US").localizedString(forRegionCode: result.city.country)
-        location.city = result.city.name
+        location.country = Locale(identifier: "en_US").localizedString(forRegionCode: country)
+        location.city = city
+        location.id = id
+        location.todaysWeather = nil
+        location.futureWeathers = []
         
+        do {
+            try context.save()
+        } catch {
+            print("Saving Location Failed: \(error)")
+        }
+    }
+    
+    static func updateForecast(with result: ForecastResponse, in context: NSManagedObjectContext) {
+        let fetchRequestPredicate = NSPredicate(format: "id == %d", result.city.id)
+        let fetchRequest = Location.fetchRequest() as NSFetchRequest<Location>
+        fetchRequest.predicate = fetchRequestPredicate
+        let location: Location
+        do {
+            let fetchResult = try context.fetch(fetchRequest)
+            if (fetchResult.count > 0) {
+                location = fetchResult[0]
+            } else {
+                print("??????")
+                return
+            }
+        } catch {
+            print("Fetch Failed: \(error)")
+            return
+        }
+        
+        location.futureWeathers?.removeAll()
         let forecastList = result.list
         for forecast in forecastList {
-            let futureWeather = FutureWeather(context: context)
             let weather = forecast.weather[0]
-            
-            futureWeather.icon = weather.icon
-            futureWeather.date = Date(timeIntervalSince1970: TimeInterval(forecast.dt))
-            futureWeather.conditionDescription = weather.description
-            futureWeather.temperature = forecast.main.temp
-            location.addToFutureWeathers(futureWeather)
+            let futureWeather = FutureWeather(
+                icon: weather.icon,
+                date: Date(timeIntervalSince1970: TimeInterval(forecast.dt)),
+                conditionDescription: weather.description,
+                temperature: forecast.main.temp
+            )
+            location.futureWeathers?.append(futureWeather)
         }
         
         do {
             try context.save()
-        } catch {}
+        } catch {
+            print("Saving Future Weathers Failed: \(error)")
+        }
     }
 }

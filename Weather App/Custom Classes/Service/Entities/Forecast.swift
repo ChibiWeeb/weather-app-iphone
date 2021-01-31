@@ -28,6 +28,7 @@ struct Weather: Codable {
 }
 
 struct City: Codable {
+    let id: Int32
     let name: String
     let country: String
 }

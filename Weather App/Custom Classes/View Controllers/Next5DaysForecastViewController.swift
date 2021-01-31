@@ -29,7 +29,7 @@ class Next5DaysForecastViewController: UIViewController {
             forCellReuseIdentifier: "ForecastTableViewCell"
         )
         
-        forecastService.getForecast(for: "Tokyo")
+        forecastService.getForecast(for: "Tbilisi")
     }
     
     override func viewWillLayoutSubviews() {
