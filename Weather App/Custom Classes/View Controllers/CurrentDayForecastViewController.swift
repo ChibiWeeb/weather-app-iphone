@@ -8,13 +8,19 @@
 import UIKit
 
 class CurrentDayForecastViewController: UIViewController {
+    
     private var gradient: Gradient!
 
+    private let currentWeatherService = CurrentWeatherService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         gradient = Gradient(gradientName: Gradient.GradientNames.background)
         gradient.addBackgroundColor(to: view)
+        
+        //TODO: Temporary
+//        currentWeatherService.getCurrentWeather(for: "Tbilisi")
     }
     
     override func viewWillLayoutSubviews() {

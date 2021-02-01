@@ -22,6 +22,8 @@
 		FA5F10D025C7226E00DF3B94 /* FutureWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5F10CF25C7226E00DF3B94 /* FutureWeather.swift */; };
 		FA5F10EA25C7492400DF3B94 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5F10E825C7492400DF3B94 /* Location+CoreDataClass.swift */; };
 		FA5F10EB25C7492400DF3B94 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5F10E925C7492400DF3B94 /* Location+CoreDataProperties.swift */; };
+		FA5F10EF25C77B0600DF3B94 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5F10EE25C77B0600DF3B94 /* CurrentWeather.swift */; };
+		FA5F10F225C77F0E00DF3B94 /* CurrentWeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5F10F125C77F0E00DF3B94 /* CurrentWeatherService.swift */; };
 		FA96BCBA25C05C0400155DBB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96BCB925C05C0400155DBB /* AppDelegate.swift */; };
 		FA96BCBC25C05C0400155DBB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA96BCBB25C05C0400155DBB /* SceneDelegate.swift */; };
 		FA96BCC125C05C0400155DBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA96BCBF25C05C0400155DBB /* Main.storyboard */; };
@@ -46,6 +48,8 @@
 		FA5F10CF25C7226E00DF3B94 /* FutureWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FutureWeather.swift; sourceTree = "<group>"; };
 		FA5F10E825C7492400DF3B94 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
 		FA5F10E925C7492400DF3B94 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		FA5F10EE25C77B0600DF3B94 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
+		FA5F10F125C77F0E00DF3B94 /* CurrentWeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherService.swift; sourceTree = "<group>"; };
 		FA96BCB625C05C0400155DBB /* Weather App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA96BCB925C05C0400155DBB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FA96BCBB25C05C0400155DBB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				FA481D8C25C4803E0051DB02 /* Forecast.swift */,
+				FA5F10EE25C77B0600DF3B94 /* CurrentWeather.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -153,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				FA5F10A325C62F4200DF3B94 /* ForecastService.swift */,
+				FA5F10F125C77F0E00DF3B94 /* CurrentWeatherService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -291,6 +297,7 @@
 				FA481D8825C476310051DB02 /* DatabaseManager.swift in Sources */,
 				FA27A84825C1A82700A9C687 /* Next5DaysForecastViewController.swift in Sources */,
 				FA27A84325C1A79100A9C687 /* CurrentDayForecastViewController.swift in Sources */,
+				FA5F10EF25C77B0600DF3B94 /* CurrentWeather.swift in Sources */,
 				FA5F10EA25C7492400DF3B94 /* Location+CoreDataClass.swift in Sources */,
 				FA481D8D25C4803E0051DB02 /* Forecast.swift in Sources */,
 				FA27A84F25C1C41500A9C687 /* NavigationBarController.swift in Sources */,
@@ -300,6 +307,7 @@
 				FA27A85A25C2015A00A9C687 /* NavigationButtonBarItem.swift in Sources */,
 				FA27A84B25C1B6A200A9C687 /* TabBarController.swift in Sources */,
 				FA5F10EB25C7492400DF3B94 /* Location+CoreDataProperties.swift in Sources */,
+				FA5F10F225C77F0E00DF3B94 /* CurrentWeatherService.swift in Sources */,
 				FA5F10A425C62F4200DF3B94 /* ForecastService.swift in Sources */,
 				FA5F10D025C7226E00DF3B94 /* FutureWeather.swift in Sources */,
 				FA5F10CD25C7225C00DF3B94 /* TodaysWeather.swift in Sources */,

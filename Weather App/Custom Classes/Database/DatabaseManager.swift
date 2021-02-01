@@ -58,6 +58,7 @@ final class DatabaseManager {
         }
     }
     
+    //TODO: Handle errors
     static func addLocation(id: Int32, city: String, country: String, in context: NSManagedObjectContext) {
         let location = Location(context: context)
         location.country = Locale(identifier: "en_US").localizedString(forRegionCode: country)
@@ -74,6 +75,7 @@ final class DatabaseManager {
     }
     
     static func updateForecast(with result: ForecastResponse, in context: NSManagedObjectContext) {
+        //TODO: Duplicate code as a seperate method
         let fetchRequestPredicate = NSPredicate(format: "id == %d", result.city.id)
         let fetchRequest = Location.fetchRequest() as NSFetchRequest<Location>
         fetchRequest.predicate = fetchRequestPredicate
@@ -108,6 +110,43 @@ final class DatabaseManager {
             try context.save()
         } catch {
             print("Saving Future Weathers Failed: \(error)")
+        }
+    }
+    
+    static func updateCurrentWeather(with result: CurrentWeatherResponse, in context: NSManagedObjectContext) {
+        //TODO: Duplicate code as a seperate method
+        let fetchRequestPredicate = NSPredicate(format: "id == %d", result.id)
+        let fetchRequest = Location.fetchRequest() as NSFetchRequest<Location>
+        fetchRequest.predicate = fetchRequestPredicate
+        let location: Location
+        do {
+            let fetchResult = try context.fetch(fetchRequest)
+            if (fetchResult.count > 0) {
+                location = fetchResult[0]
+            } else {
+                print("??????")
+                return
+            }
+        } catch {
+            print("Fetch Failed: \(error)")
+            return
+        }
+        
+        location.todaysWeather = nil
+        let todaysWeather = TodaysWeather(
+            temperature: result.main.temp,
+            conditionMain: result.weather[0].main,
+            cloudiness: result.clouds.all,
+            humidity: result.main.humidity,
+            windSpeed: result.wind.speed,
+            windDirection: TodaysWeather.getWindDirectionFromDegrees(degrees: result.wind.deg)
+        )
+        location.todaysWeather = todaysWeather
+        
+        do {
+            try context.save()
+        } catch {
+            print("Saving Current Weather Failed: \(error)")
         }
     }
 }

@@ -7,6 +7,8 @@
 
 import Foundation
 
+//TODO: Check if everything is needed here
+
 struct ForecastResponse: Codable {
     let list: [Forecast]
     let city: City
@@ -14,15 +16,15 @@ struct ForecastResponse: Codable {
 
 struct Forecast: Codable {
     let dt: Int
-    let main: MainInfo
-    let weather: [Weather]
+    let main: ForecastMainInfo
+    let weather: [ForecastWeatherInfo]
 }
 
-struct MainInfo: Codable {
+struct ForecastMainInfo: Codable {
     let temp: Double
 }
 
-struct Weather: Codable {
+struct ForecastWeatherInfo: Codable {
     let description: String
     let icon: String
 }

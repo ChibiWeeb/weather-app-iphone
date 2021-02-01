@@ -20,6 +20,7 @@ public class FutureWeather: NSObject, NSCoding {
         self.conditionDescription = conditionDescription
         self.temperature = temperature
     }
+    
     required public init?(coder: NSCoder) {
         self.icon = coder.decodeObject(forKey: "icon") as! String
         self.date = coder.decodeObject(forKey: "date") as! Date
