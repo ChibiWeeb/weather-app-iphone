@@ -39,6 +39,7 @@ class ForecastService {
                     let decoder = JSONDecoder()
                     do {
                         let result = try decoder.decode(ForecastResponse.self, from: data)
+//                        DatabaseManager.addLocation(id: result.city.id, city: result.city.name, country: result.city.country, in: self.databaseContext)
                         DatabaseManager.updateForecast(with: result, in: self.databaseContext)
                     } catch {
                         print(error)

@@ -21,7 +21,11 @@ class ForecastTableViewCell: UITableViewCell {
         
         conditionLabel.text = futureWeather.conditionDescription.capitalized
         
-        temperatureLabel.text = String(describing: futureWeather.temperature.rounded()).split(separator: ".")[0] + "℃"
+        var temperature = futureWeather.temperature.rounded()
+        if (futureWeather.temperature > -1 && futureWeather.temperature < 0) {
+            temperature *= -1
+        }
+        temperatureLabel.text = String(describing: temperature).split(separator: ".")[0] + "℃"
     }
 
     override func awakeFromNib() {

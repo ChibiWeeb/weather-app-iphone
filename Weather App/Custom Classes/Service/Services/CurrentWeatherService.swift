@@ -39,7 +39,7 @@ class CurrentWeatherService {
                     let decoder = JSONDecoder()
                     do {
                         let result = try decoder.decode(CurrentWeatherResponse.self, from: data)
-                        DatabaseManager.addLocation(id: result.id, city: result.name, country: result.sys.country, in: self.databaseContext)
+//                        DatabaseManager.addLocation(id: result.id, city: result.name, country: result.sys.country, in: self.databaseContext)
                         DatabaseManager.updateCurrentWeather(with: result, in: self.databaseContext)
                     } catch {
                         print(error)

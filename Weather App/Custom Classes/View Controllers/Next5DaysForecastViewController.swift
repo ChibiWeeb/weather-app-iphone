@@ -32,9 +32,9 @@ class Next5DaysForecastViewController: UIViewController {
         )
         
         //TODO: Temporary
-        forecastService.getForecast(for: "Tbilisi")
+        forecastService.getForecast(for: "Sapporo")
         do {
-            futureWeathers = try (DatabaseManager.getLocation(for: "Tbilisi", in: DatabaseManager.shared.persistentContainer.viewContext)?.futureWeathers)!
+            futureWeathers = try (DatabaseManager.getLocation(for: "Sapporo", in: DatabaseManager.shared.persistentContainer.viewContext)?.futureWeathers)!
             tableView.reloadData()
         } catch {}
     }
