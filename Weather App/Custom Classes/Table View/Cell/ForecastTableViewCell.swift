@@ -9,7 +9,20 @@ import UIKit
 
 class ForecastTableViewCell: UITableViewCell {
     
-//    func configure(with )
+    @IBOutlet var timeLabel: UILabel!
+    @IBOutlet var conditionLabel: UILabel!
+    @IBOutlet var temperatureLabel: UILabel!
+    
+    func configure(with futureWeather: FutureWeather) {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        let timeLabelText = formatter.string(from: futureWeather.date)
+        timeLabel.text = timeLabelText
+        
+        conditionLabel.text = futureWeather.conditionDescription.capitalized
+        
+        temperatureLabel.text = String(describing: futureWeather.temperature.rounded()).split(separator: ".")[0] + "℃"
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()

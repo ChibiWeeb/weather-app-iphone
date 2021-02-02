@@ -63,6 +63,11 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="conditionLabel" destination="eGI-JM-q4H" id="P3f-uE-UnL"/>
+                <outlet property="temperatureLabel" destination="g0c-8T-7xi" id="mlg-Ql-RGQ"/>
+                <outlet property="timeLabel" destination="4gl-mR-7md" id="EbK-U2-wcU"/>
+            </connections>
             <point key="canvasLocation" x="34.782608695652179" y="84.375"/>
         </tableViewCell>
     </objects>
