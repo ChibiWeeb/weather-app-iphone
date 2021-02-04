@@ -11,14 +11,13 @@ class Next5DaysForecastViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
-//    private let forecastService = ForecastService()
-    
-    private var gradient: Gradient!
+    private let gradient = Gradient(gradientName: Gradient.GradientNames.background)
+    private let forecastService = Service<ForecastResponse>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        gradient = Gradient(gradientName: Gradient.GradientNames.background)
+        gradient
         gradient.addBackgroundColor(to: view)
         
         tableView.delegate = self

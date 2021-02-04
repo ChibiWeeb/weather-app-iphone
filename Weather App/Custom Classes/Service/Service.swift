@@ -18,9 +18,7 @@ class Service<T: Codable> {
         components.scheme = "https"
         components.host = "api.openweathermap.org"
         components.path = "/data/2.5/"
-    }
-    
-    func getService(for city: String) {
+        
         switch T.self {
         case is CurrentWeatherResponse.Type:
             components.path += "weather"
@@ -29,7 +27,9 @@ class Service<T: Codable> {
         default:
             print("ha?")
         }
-        
+    }
+    
+    func getService(for city: String) {
         let parameters = [
             "q": city,
             "units": "metric",
