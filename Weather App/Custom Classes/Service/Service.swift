@@ -29,7 +29,7 @@ class Service<T: Codable> {
         }
     }
     
-    func getService(for city: String) {
+    func getServiceResult(for city: String, completion: @escaping (Result<T, Error>) -> ()) {
         let parameters = [
             "q": city,
             "units": "metric",
@@ -43,21 +43,31 @@ class Service<T: Codable> {
             let request = URLRequest(url: url)
             
             let task = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error in
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+                
                 if let data = data {
                     let decoder = JSONDecoder()
                     do {
                         let result = try decoder.decode(T.self, from: data)
-                        print(result)
+                        completion(.success(result))
                     } catch {
-                        print(error)
+                        completion(.failure(error))
                     }
                 } else {
-                    print("No Data")
+                    completion(.failure(ServiceError.noData))
                 }
             })
             task.resume()
         } else {
-            print("Invalid Parameters")
+            completion(.failure(ServiceError.invalidParameters))
         }
     }
+}
+
+enum ServiceError: Error {
+    case noData
+    case invalidParameters
 }

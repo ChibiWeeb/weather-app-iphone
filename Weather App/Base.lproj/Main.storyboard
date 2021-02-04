@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -29,7 +30,7 @@
         <!--Today-->
         <scene sceneID="Qf7-A6-5Bu">
             <objects>
-                <viewController id="yWj-st-mMu" customClass="CurrentDayForecastViewController" customModule="Weather_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="yWj-st-mMu" customClass="CurrentWeatherViewController" customModule="Weather_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3hG-3u-rxS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -37,7 +38,7 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <navigationItem key="navigationItem" title="Today" id="Yj6-rL-0U8">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="zHy-BQ-8he" customClass="NavigationButtonBarItem" customModule="Weather_App" customModuleProvider="target"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="zHy-BQ-8he"/>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hla-Xq-dzA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -47,11 +48,15 @@
         <!--Forecast-->
         <scene sceneID="aMM-gb-1tC">
             <objects>
-                <viewController id="zxW-ws-YC2" customClass="Next5DaysForecastViewController" customModule="Weather_App" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zxW-ws-YC2" customClass="ForecastViewController" customModule="Weather_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lXo-8G-bvD">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="MYa-1O-y7R">
+                                <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
+                                <color key="color" name="accent"/>
+                            </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yV5-Ze-Rds">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -61,15 +66,22 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="yV5-Ze-Rds" firstAttribute="leading" secondItem="Q4j-vC-Ff5" secondAttribute="leading" id="Rl8-Uf-riI"/>
+                            <constraint firstItem="MYa-1O-y7R" firstAttribute="centerX" secondItem="lXo-8G-bvD" secondAttribute="centerX" id="fg3-aq-VhU"/>
+                            <constraint firstItem="MYa-1O-y7R" firstAttribute="centerY" secondItem="lXo-8G-bvD" secondAttribute="centerY" id="oSh-30-Frk"/>
                             <constraint firstItem="yV5-Ze-Rds" firstAttribute="top" secondItem="Q4j-vC-Ff5" secondAttribute="top" id="q4v-N0-xE7"/>
                             <constraint firstItem="Q4j-vC-Ff5" firstAttribute="trailing" secondItem="yV5-Ze-Rds" secondAttribute="trailing" id="qy5-JT-SDw"/>
                             <constraint firstItem="Q4j-vC-Ff5" firstAttribute="bottom" secondItem="yV5-Ze-Rds" secondAttribute="bottom" id="tK4-ph-tcy"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Forecast" id="z0j-Mo-Jmq">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="lu3-4Y-4pB" customClass="NavigationButtonBarItem" customModule="Weather_App" customModuleProvider="target"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="lu3-4Y-4pB">
+                            <connections>
+                                <action selector="refresh" destination="zxW-ws-YC2" id="bv6-nF-t2s"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="loader" destination="MYa-1O-y7R" id="HGC-n2-pYr"/>
                         <outlet property="tableView" destination="yV5-Ze-Rds" id="mJV-Fo-wqc"/>
                     </connections>
                 </viewController>
@@ -125,5 +137,8 @@
     <resources>
         <image name="tab_forecast" width="25" height="25"/>
         <image name="tab_today" width="30" height="29"/>
+        <namedColor name="accent">
+            <color red="0.9882352941176471" green="0.91764705882352937" blue="0.16078431372549021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>
