@@ -17,7 +17,6 @@ class Next5DaysForecastViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        gradient
         gradient.addBackgroundColor(to: view)
         
         tableView.delegate = self
