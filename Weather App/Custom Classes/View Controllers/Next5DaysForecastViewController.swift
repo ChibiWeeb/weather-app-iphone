@@ -11,11 +11,9 @@ class Next5DaysForecastViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     
-    private let forecastService = ForecastService()
+//    private let forecastService = ForecastService()
     
     private var gradient: Gradient!
-    
-    lazy var futureWeathers = [FutureWeather]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +30,7 @@ class Next5DaysForecastViewController: UIViewController {
         )
         
         //TODO: Temporary
-        forecastService.getForecast(for: "Sapporo")
-        do {
-            futureWeathers = try (DatabaseManager.getLocation(for: "Sapporo", in: DatabaseManager.shared.persistentContainer.viewContext)?.futureWeathers)!
-            tableView.reloadData()
-        } catch {}
+//        forecastService.getForecast(for: "Sapporo")
     }
     
     override func viewWillLayoutSubviews() {
@@ -49,14 +43,15 @@ class Next5DaysForecastViewController: UIViewController {
 extension Next5DaysForecastViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return futureWeathers.count
+//        return futureWeathers.count
+        return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ForecastTableViewCell", for: indexPath)
         if let forecastTableViewCell = cell as? ForecastTableViewCell {
-            let futureWeather = futureWeathers[indexPath.row]
-            forecastTableViewCell.configure(with: futureWeather)
+//            let futureWeather = futureWeathers[indexPath.row]
+//            forecastTableViewCell.configure(with: futureWeather)
         }
         return cell
     }

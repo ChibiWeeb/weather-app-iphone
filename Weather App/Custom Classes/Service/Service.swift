@@ -1,5 +1,5 @@
 //
-//  CurrentWeatherService.swift
+//  Service.swift
 //  Weather App
 //
 //  Created by Nika Nikolishvili on 01.02.21.
@@ -7,21 +7,29 @@
 
 import Foundation
 
-class CurrentWeatherService {
+class Service<T: Codable> {
     
     //TODO: Handle errors
     private let apiKey = "cf270b8b540ec2bbdc4c6aa1093b0653" //TODO: Move into Keychain
     private var components = URLComponents()
-    private var databaseContext = DatabaseManager.shared.persistentContainer.viewContext
     
     init() {
         //TODO: Find a way to avoid duplication
         components.scheme = "https"
         components.host = "api.openweathermap.org"
-        components.path = "/data/2.5/weather"
+        components.path = "/data/2.5/"
     }
     
-    func getCurrentWeather(for city: String) {
+    func getService(for city: String) {
+        switch T.self {
+        case is CurrentWeatherResponse.Type:
+            components.path += "weather"
+        case is ForecastResponse.Type:
+            components.path += "forecast"
+        default:
+            print("ha?")
+        }
+        
         let parameters = [
             "q": city,
             "units": "metric",
@@ -38,9 +46,8 @@ class CurrentWeatherService {
                 if let data = data {
                     let decoder = JSONDecoder()
                     do {
-                        let result = try decoder.decode(CurrentWeatherResponse.self, from: data)
-//                        DatabaseManager.addLocation(id: result.id, city: result.name, country: result.sys.country, in: self.databaseContext)
-                        DatabaseManager.updateCurrentWeather(with: result, in: self.databaseContext)
+                        let result = try decoder.decode(T.self, from: data)
+                        print(result)
                     } catch {
                         print(error)
                     }

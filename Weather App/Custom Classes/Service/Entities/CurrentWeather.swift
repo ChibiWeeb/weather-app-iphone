@@ -15,7 +15,7 @@ struct CurrentWeatherResponse: Codable {
     let wind: WindInfo
     let clouds: CloudsInfo
     let sys: SysInfo
-    let id: Int32
+    let id: Int
     let name: String
 }
 

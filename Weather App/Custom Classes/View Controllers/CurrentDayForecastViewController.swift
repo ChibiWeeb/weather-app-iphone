@@ -11,7 +11,7 @@ class CurrentDayForecastViewController: UIViewController {
     
     private var gradient: Gradient!
 
-    private let currentWeatherService = CurrentWeatherService()
+    private let service = Service<CurrentWeatherResponse>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +21,7 @@ class CurrentDayForecastViewController: UIViewController {
         
         //TODO: Temporary
 //        currentWeatherService.getCurrentWeather(for: "Tbilisi")
+        service.getService(for: "Tbilisi")
     }
     
     override func viewWillLayoutSubviews() {
