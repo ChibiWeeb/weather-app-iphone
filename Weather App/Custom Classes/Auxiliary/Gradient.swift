@@ -9,7 +9,7 @@ import UIKit
 
 class Gradient {
     
-    let gradientLayer: CAGradientLayer
+    private let gradientLayer: CAGradientLayer
     
     init(gradientName: GradientNames) {
         gradientLayer = CAGradientLayer()
