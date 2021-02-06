@@ -53,6 +53,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cn5-iQ-RbB" customClass="ErrorView" customModule="Weather_App" customModuleProvider="target">
+                                <rect key="frame" x="32" y="152" width="350" height="565"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="MYa-1O-y7R">
                                 <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
                                 <color key="color" name="accent"/>
@@ -65,11 +69,15 @@
                         <viewLayoutGuide key="safeArea" id="Q4j-vC-Ff5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="cn5-iQ-RbB" firstAttribute="top" secondItem="Q4j-vC-Ff5" secondAttribute="top" constant="64" id="KCg-EJ-GZF"/>
                             <constraint firstItem="yV5-Ze-Rds" firstAttribute="leading" secondItem="Q4j-vC-Ff5" secondAttribute="leading" id="Rl8-Uf-riI"/>
+                            <constraint firstItem="cn5-iQ-RbB" firstAttribute="leading" secondItem="Q4j-vC-Ff5" secondAttribute="leading" constant="32" id="fIz-6Z-DN3"/>
                             <constraint firstItem="MYa-1O-y7R" firstAttribute="centerX" secondItem="lXo-8G-bvD" secondAttribute="centerX" id="fg3-aq-VhU"/>
+                            <constraint firstItem="Q4j-vC-Ff5" firstAttribute="bottom" secondItem="cn5-iQ-RbB" secondAttribute="bottom" constant="96" id="gK7-pG-AJy"/>
                             <constraint firstItem="MYa-1O-y7R" firstAttribute="centerY" secondItem="lXo-8G-bvD" secondAttribute="centerY" id="oSh-30-Frk"/>
                             <constraint firstItem="yV5-Ze-Rds" firstAttribute="top" secondItem="Q4j-vC-Ff5" secondAttribute="top" id="q4v-N0-xE7"/>
                             <constraint firstItem="Q4j-vC-Ff5" firstAttribute="trailing" secondItem="yV5-Ze-Rds" secondAttribute="trailing" id="qy5-JT-SDw"/>
+                            <constraint firstItem="Q4j-vC-Ff5" firstAttribute="trailing" secondItem="cn5-iQ-RbB" secondAttribute="trailing" constant="32" id="ruX-W3-IEd"/>
                             <constraint firstItem="Q4j-vC-Ff5" firstAttribute="bottom" secondItem="yV5-Ze-Rds" secondAttribute="bottom" id="tK4-ph-tcy"/>
                         </constraints>
                     </view>
@@ -81,6 +89,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="errorView" destination="cn5-iQ-RbB" id="Jfd-J9-jrS"/>
                         <outlet property="loader" destination="MYa-1O-y7R" id="HGC-n2-pYr"/>
                         <outlet property="tableView" destination="yV5-Ze-Rds" id="mJV-Fo-wqc"/>
                     </connections>

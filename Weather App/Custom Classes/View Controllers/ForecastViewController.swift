@@ -21,6 +21,7 @@ class ForecastViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var loader: UIActivityIndicatorView!
+    @IBOutlet var errorView: ErrorView!
     
     private let gradient = Gradient(gradientName: .background)
     private let forecastService = Service<ForecastResponse>()
@@ -30,6 +31,7 @@ class ForecastViewController: UIViewController {
         super.viewDidLoad()
         
         gradient.addBackgroundColor(to: view)
+        errorView.reloadButton.addTarget(self, action: #selector(refresh), for: .touchUpInside)
         setupTableView()
         loadForecasts()
     }
@@ -60,8 +62,9 @@ class ForecastViewController: UIViewController {
     
     private func loadForecasts() {
         tableView.isHidden = true
+        errorView.isHidden = true
         loader.startAnimating()
-        forecastService.getServiceResult(for: "Tbilisi") { [weak self] result in
+        forecastService.getServiceResult(for: "Tbilsisi") { [weak self] result in
             guard let self = self else {return}
             DispatchQueue.main.async {
                 self.loader.stopAnimating()
@@ -70,8 +73,8 @@ class ForecastViewController: UIViewController {
                     self.forecastTableData = self.makeForecastTableData(from: forecastResult.list)
                     self.tableView.reloadData()
                     self.tableView.isHidden = false
-                case .failure(let error):
-                    print(error)
+                case .failure(_):
+                    self.errorView.isHidden = false
                 }
             }
         }

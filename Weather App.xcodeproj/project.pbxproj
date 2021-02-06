@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -26,6 +26,9 @@
 		FADE328B25CDB64700C85419 /* ForecastTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE328A25CDB64700C85419 /* ForecastTableViewHeader.swift */; };
 		FADE328F25CDB68F00C85419 /* ForecastTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FADE328E25CDB68F00C85419 /* ForecastTableViewHeader.xib */; };
 		FADE329625CDCF2200C85419 /* FormattedDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE329525CDCF2200C85419 /* FormattedDay.swift */; };
+		FADE32A025CEFA6E00C85419 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE329F25CEFA6E00C85419 /* ErrorView.swift */; };
+		FADE32A425CEFB1400C85419 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FADE32A325CEFB1400C85419 /* ErrorView.xib */; };
+		FADE32A725CF1B4500C85419 /* Glow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE32A625CF1B4400C85419 /* Glow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +54,9 @@
 		FADE328A25CDB64700C85419 /* ForecastTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewHeader.swift; sourceTree = "<group>"; };
 		FADE328E25CDB68F00C85419 /* ForecastTableViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastTableViewHeader.xib; sourceTree = "<group>"; };
 		FADE329525CDCF2200C85419 /* FormattedDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedDay.swift; sourceTree = "<group>"; };
+		FADE329F25CEFA6E00C85419 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		FADE32A325CEFB1400C85419 /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
+		FADE32A625CF1B4400C85419 /* Glow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glow.swift; sourceTree = "<group>"; };
 		FD90125F82240E4F7BC5AAA5 /* Pods-Weather App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather App.debug.xcconfig"; path = "Target Support Files/Pods-Weather App/Pods-Weather App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,7 +78,6 @@
 				FD90125F82240E4F7BC5AAA5 /* Pods-Weather App.debug.xcconfig */,
 				F9084D4BA477DC0B51B146CD /* Pods-Weather App.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -96,6 +101,7 @@
 		FA27A85625C200AF00A9C687 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FADE329D25CEFA2000C85419 /* Reusable Views */,
 				FA481D8125C474060051DB02 /* Service */,
 				FA481D7A25C321910051DB02 /* Table View */,
 				FA481D7625C21A090051DB02 /* Auxiliary */,
@@ -127,6 +133,7 @@
 			children = (
 				FA481D7725C21A860051DB02 /* Gradient.swift */,
 				FADE329525CDCF2200C85419 /* FormattedDay.swift */,
+				FADE32A625CF1B4400C85419 /* Glow.swift */,
 			);
 			path = Auxiliary;
 			sourceTree = "<group>";
@@ -208,6 +215,23 @@
 			path = Header;
 			sourceTree = "<group>";
 		};
+		FADE329D25CEFA2000C85419 /* Reusable Views */ = {
+			isa = PBXGroup;
+			children = (
+				FADE329E25CEFA2900C85419 /* Error View */,
+			);
+			path = "Reusable Views";
+			sourceTree = "<group>";
+		};
+		FADE329E25CEFA2900C85419 /* Error View */ = {
+			isa = PBXGroup;
+			children = (
+				FADE329F25CEFA6E00C85419 /* ErrorView.swift */,
+				FADE32A325CEFB1400C85419 /* ErrorView.xib */,
+			);
+			path = "Error View";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -270,6 +294,7 @@
 				FA481D7F25C325160051DB02 /* ForecastTableViewCell.xib in Resources */,
 				FADE328F25CDB68F00C85419 /* ForecastTableViewHeader.xib in Resources */,
 				FA96BCC925C05C0600155DBB /* LaunchScreen.storyboard in Resources */,
+				FADE32A425CEFB1400C85419 /* ErrorView.xib in Resources */,
 				FA96BCC625C05C0600155DBB /* Assets.xcassets in Resources */,
 				FA96BCC125C05C0400155DBB /* Main.storyboard in Resources */,
 			);
@@ -325,6 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA27A84825C1A82700A9C687 /* ForecastViewController.swift in Sources */,
+				FADE32A725CF1B4500C85419 /* Glow.swift in Sources */,
 				FA27A84325C1A79100A9C687 /* CurrentWeatherViewController.swift in Sources */,
 				FA5F10EF25C77B0600DF3B94 /* CurrentWeather.swift in Sources */,
 				FA481D8D25C4803E0051DB02 /* Forecast.swift in Sources */,
@@ -335,6 +361,7 @@
 				FA481D7E25C325160051DB02 /* ForecastTableViewCell.swift in Sources */,
 				FA27A84B25C1B6A200A9C687 /* TabBarController.swift in Sources */,
 				FA5F10F225C77F0E00DF3B94 /* Service.swift in Sources */,
+				FADE32A025CEFA6E00C85419 /* ErrorView.swift in Sources */,
 				FA481D7825C21A860051DB02 /* Gradient.swift in Sources */,
 				FADE328B25CDB64700C85419 /* ForecastTableViewHeader.swift in Sources */,
 			);
