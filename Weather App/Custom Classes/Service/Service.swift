@@ -24,7 +24,7 @@ class Service<T: Codable> {
         case is ForecastResponse.Type:
             components.path += "forecast"
         default:
-            print("ha?")
+            break
         }
     }
     
