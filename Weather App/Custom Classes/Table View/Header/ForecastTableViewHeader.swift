@@ -11,7 +11,7 @@ class ForecastTableViewHeader: UITableViewHeaderFooterView {
     
     @IBOutlet var dayLabel: UILabel!
     
-    func setLabelText(as day: String) {
+    func setDayLabelText(as day: String) {
         dayLabel.text = day
     }
 }

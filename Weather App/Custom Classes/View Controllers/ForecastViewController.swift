@@ -7,6 +7,16 @@
 
 import UIKit
 
+class ForecastSection {
+    var header: String
+    var forecasts = [Forecast]()
+    
+    init(header: String, forecasts: [Forecast]) {
+        self.header = header
+        self.forecasts = forecasts
+    }
+}
+
 class ForecastViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
@@ -14,7 +24,7 @@ class ForecastViewController: UIViewController {
     
     private let gradient = Gradient(gradientName: .background)
     private let forecastService = Service<ForecastResponse>()
-    private lazy var forecasts = [Forecast]()
+    private var forecastTableData = [ForecastSection]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +52,10 @@ class ForecastViewController: UIViewController {
             UINib(nibName: Constants.cellName, bundle: nil),
             forCellReuseIdentifier: Constants.cellName
         )
+        tableView.register(
+            UINib(nibName: Constants.headerName, bundle: nil),
+            forHeaderFooterViewReuseIdentifier: Constants.headerName
+        )
     }
     
     private func loadForecasts() {
@@ -53,7 +67,7 @@ class ForecastViewController: UIViewController {
                 self.loader.stopAnimating()
                 switch result {
                 case .success(let forecastResult):
-                    self.forecasts = forecastResult.list
+                    self.forecastTableData = self.makeForecastTableData(from: forecastResult.list)
                     self.tableView.reloadData()
                     self.tableView.isHidden = false
                 case .failure(let error):
@@ -62,18 +76,56 @@ class ForecastViewController: UIViewController {
             }
         }
     }
+    
+    private func makeForecastTableData(from forecastList: [Forecast]) -> [ForecastSection] {
+        var forecastTableData = [ForecastSection]()
+        var sectionMadeFor = [
+            "Monday": false,
+            "Tuesday": false,
+            "Wednesday": false,
+            "Thursday": false,
+            "Friday": false,
+            "Saturday": false,
+            "Sunday": false
+        ]
+        
+        for forecast in forecastList {
+            let header = FormattedDay(
+                timeInterval: TimeInterval(forecast.dt),
+                dateFormat: .day
+            ).getFormattedDate()
+            
+            if (sectionMadeFor[header]!) {
+                for forecastSection in forecastTableData {
+                    if (forecastSection.header == header) {
+                        forecastSection.forecasts.append(forecast)
+                        break
+                    }
+                }
+            } else {
+                let forecastSection = ForecastSection(header: header, forecasts: [forecast])
+                forecastTableData.append(forecastSection)
+                sectionMadeFor[header] = true
+            }
+        }
+        return forecastTableData
+    }
 }
 
 extension ForecastViewController: UITableViewDelegate, UITableViewDataSource {
     
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return forecastTableData.count
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return forecasts.count
+        return forecastTableData[section].forecasts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: Constants.cellName, for: indexPath)
         if let forecastTableViewCell = cell as? ForecastTableViewCell {
-            let forecast = forecasts[indexPath.row]
+            let forecast = forecastTableData[indexPath.section].forecasts[indexPath.row]
             forecastTableViewCell.configure(with: forecast)
         }
         return cell
@@ -82,11 +134,29 @@ extension ForecastViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return Constants.rowHeight
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: Constants.headerName)
+        if let forecastTableViewHeader = header as? ForecastTableViewHeader {
+            forecastTableViewHeader.setDayLabelText(as: forecastTableData[section].header)
+        }
+        return header
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        Constants.headerHeight
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        CGFloat.leastNonzeroMagnitude
+    }
 }
 
 extension ForecastViewController {
     struct Constants {
         static let cellName = "ForecastTableViewCell"
         static let rowHeight: CGFloat = 66
+        static let headerName = "ForecastTableViewHeader"
+        static let headerHeight: CGFloat = 44
     }
 }

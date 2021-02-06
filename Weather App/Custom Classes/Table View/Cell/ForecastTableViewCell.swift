@@ -14,8 +14,10 @@ class ForecastTableViewCell: UITableViewCell {
     @IBOutlet var temperatureLabel: UILabel!
     
     func configure(with forecast: Forecast) {
-        let formattedDay = FormattedDay(timeInterval: TimeInterval(forecast.dt), dateFormat: .hoursAndMinutes)
-        let timeLabelText = formattedDay.getFormattedDate()
+        let timeLabelText = FormattedDay(
+            timeInterval: TimeInterval(forecast.dt),
+            dateFormat: .hoursAndMinutes
+        ).getFormattedDate()
         timeLabel.text = timeLabelText
 
         conditionLabel.text = forecast.weather[0].description.capitalized
