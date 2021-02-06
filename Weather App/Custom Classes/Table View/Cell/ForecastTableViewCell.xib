@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FXB-0L-FcX">
-                        <rect key="frame" x="16" y="23" width="20" height="20"/>
+                        <rect key="frame" x="16" y="13" width="39.5" height="40"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="FXB-0L-FcX" secondAttribute="height" multiplier="1:1" id="Eis-D6-kDM"/>
                         </constraints>
@@ -30,7 +30,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="20" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WwG-NP-ITL">
-                        <rect key="frame" x="52" y="16" width="105.5" height="34.5"/>
+                        <rect key="frame" x="71.5" y="16" width="105.5" height="34.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HH:MM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4gl-mR-7md">
                                 <rect key="frame" x="0.0" y="0.0" width="105.5" height="14.5"/>
@@ -53,7 +53,7 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="FXB-0L-FcX" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="3k3-st-cc1"/>
-                    <constraint firstItem="FXB-0L-FcX" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.3" id="AzX-k4-8ky"/>
+                    <constraint firstItem="FXB-0L-FcX" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.6" id="AzX-k4-8ky"/>
                     <constraint firstAttribute="trailing" secondItem="g0c-8T-7xi" secondAttribute="trailing" constant="16" id="Mg7-SJ-iEW"/>
                     <constraint firstItem="g0c-8T-7xi" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="aBl-eQ-OW0"/>
                     <constraint firstItem="WwG-NP-ITL" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="obf-eT-gqs"/>
@@ -65,6 +65,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="conditionLabel" destination="eGI-JM-q4H" id="P3f-uE-UnL"/>
+                <outlet property="iconImageView" destination="FXB-0L-FcX" id="zCJ-lf-xDJ"/>
                 <outlet property="temperatureLabel" destination="g0c-8T-7xi" id="mlg-Ql-RGQ"/>
                 <outlet property="timeLabel" destination="4gl-mR-7md" id="EbK-U2-wcU"/>
             </connections>

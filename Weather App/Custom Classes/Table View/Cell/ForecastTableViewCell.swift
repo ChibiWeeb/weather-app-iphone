@@ -6,19 +6,30 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ForecastTableViewCell: UITableViewCell {
     
+    @IBOutlet var iconImageView: UIImageView!
     @IBOutlet var timeLabel: UILabel!
     @IBOutlet var conditionLabel: UILabel!
     @IBOutlet var temperatureLabel: UILabel!
     
+    private var components = URLComponents()
+    
     func configure(with forecast: Forecast) {
+        components.scheme = "https"
+        components.host = "openweathermap.org"
+        components.path = ("/img/wn/" + forecast.weather[0].icon + ".png")
+        iconImageView.sd_imageIndicator = SDWebImageActivityIndicator.gray
+        iconImageView.sd_setImage(with: components.url)
+        
         let timeLabelText = FormattedDay(
             timeInterval: TimeInterval(forecast.dt),
             dateFormat: .hoursAndMinutes
         ).getFormattedDate()
         timeLabel.text = timeLabelText
+        
 
         conditionLabel.text = forecast.weather[0].description.capitalized
 

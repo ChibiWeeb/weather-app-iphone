@@ -14,7 +14,6 @@ class Service<T: Codable> {
     private var components = URLComponents()
     
     init() {
-        //TODO: Find a way to avoid duplication
         components.scheme = "https"
         components.host = "api.openweathermap.org"
         components.path = "/data/2.5/"
