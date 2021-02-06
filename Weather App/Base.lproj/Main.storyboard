@@ -34,12 +34,42 @@
                     <view key="view" contentMode="scaleToFill" id="3hG-3u-rxS">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFn-fN-gP2">
+                                <rect key="frame" x="184" y="433" width="46" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="addCity" destination="yWj-st-mMu" eventType="touchUpInside" id="Qlq-A7-u7H"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y4j-Om-X56">
+                                <rect key="frame" x="143" y="391" width="128" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="128" id="BEB-nl-wig"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="W2a-ga-PSL"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iFn-fN-gP2" firstAttribute="centerX" secondItem="3hG-3u-rxS" secondAttribute="centerX" id="IYW-vC-sbI"/>
+                            <constraint firstItem="y4j-Om-X56" firstAttribute="centerX" secondItem="3hG-3u-rxS" secondAttribute="centerX" id="VVi-lD-Nkh"/>
+                            <constraint firstItem="iFn-fN-gP2" firstAttribute="centerY" secondItem="3hG-3u-rxS" secondAttribute="centerY" id="cSi-gW-1rS"/>
+                            <constraint firstItem="iFn-fN-gP2" firstAttribute="top" secondItem="y4j-Om-X56" secondAttribute="bottom" constant="8" id="oBV-b5-K9P"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Today" id="Yj6-rL-0U8">
-                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="zHy-BQ-8he"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="zHy-BQ-8he">
+                            <connections>
+                                <action selector="refresh" destination="yWj-st-mMu" id="LOo-nc-4v0"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="field" destination="y4j-Om-X56" id="ihb-Uj-MJ2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hla-Xq-dzA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

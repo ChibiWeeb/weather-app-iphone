@@ -53,7 +53,7 @@ class Service<T: Codable> {
                         let result = try decoder.decode(T.self, from: data)
                         completion(.success(result))
                     } catch {
-                        completion(.failure(error))
+                        completion(.failure(ServiceError.keyNotFound))
                     }
                 } else {
                     completion(.failure(ServiceError.noData))
@@ -69,4 +69,5 @@ class Service<T: Codable> {
 enum ServiceError: Error {
     case noData
     case invalidParameters
+    case keyNotFound
 }
