@@ -61,12 +61,21 @@ class CurrentWeatherViewController: UIViewController {
         currentWeatherService.getServiceResult(for: cityName) { result in
             switch result {
             case .success(let currentWeatherResult):
-                //TODO: Check if already added
-                //TODO: Check if max added
                 var addedCities: [String] = (UserDefaults.standard.array(forKey: "added.cities") ?? []) as! [String]
                 
                 //TODO: Temporary
-                if (addedCities.contains(currentWeatherResult.name.lowercased())) {
+                if (addedCities.count == 3) {
+                    DispatchQueue.main.async {
+                        
+                        let alertController = UIAlertController(
+                            title: "Error",
+                            message:"Maximum numbers of 3 cities reached. Remove already added city if you want to add more",
+                            preferredStyle: .alert
+                        )
+                        alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+                        self.present(alertController, animated: true, completion: nil)
+                    }
+                } else if (addedCities.contains(currentWeatherResult.name.lowercased())) {
                     DispatchQueue.main.async {
                         
                         let alertController = UIAlertController(

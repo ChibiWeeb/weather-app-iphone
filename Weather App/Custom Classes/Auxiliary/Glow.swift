@@ -11,7 +11,7 @@ class Glow {
     
     static func setGlow(to view: UIView) {
         view.layer.shadowOffset = .zero
-        view.layer.shadowColor = UIColor(named: "accent")?.cgColor
+        view.layer.shadowColor = view.backgroundColor?.cgColor
         view.layer.shadowRadius = 10
         view.layer.shadowOpacity = 1
         view.layer.shadowPath = UIBezierPath(rect: view.bounds).cgPath
