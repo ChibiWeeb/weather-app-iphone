@@ -29,6 +29,7 @@
 		FADE32A025CEFA6E00C85419 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE329F25CEFA6E00C85419 /* ErrorView.swift */; };
 		FADE32A425CEFB1400C85419 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FADE32A325CEFB1400C85419 /* ErrorView.xib */; };
 		FADE32A725CF1B4500C85419 /* Glow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE32A625CF1B4400C85419 /* Glow.swift */; };
+		FADE32AA25D0495500C85419 /* ActiveCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE32A925D0495500C85419 /* ActiveCity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -57,6 +58,7 @@
 		FADE329F25CEFA6E00C85419 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		FADE32A325CEFB1400C85419 /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		FADE32A625CF1B4400C85419 /* Glow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glow.swift; sourceTree = "<group>"; };
+		FADE32A925D0495500C85419 /* ActiveCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveCity.swift; sourceTree = "<group>"; };
 		FD90125F82240E4F7BC5AAA5 /* Pods-Weather App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather App.debug.xcconfig"; path = "Target Support Files/Pods-Weather App/Pods-Weather App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,6 +136,7 @@
 				FA481D7725C21A860051DB02 /* Gradient.swift */,
 				FADE329525CDCF2200C85419 /* FormattedDay.swift */,
 				FADE32A625CF1B4400C85419 /* Glow.swift */,
+				FADE32A925D0495500C85419 /* ActiveCity.swift */,
 			);
 			path = Auxiliary;
 			sourceTree = "<group>";
@@ -359,6 +362,7 @@
 				FA96BCBA25C05C0400155DBB /* AppDelegate.swift in Sources */,
 				FA96BCBC25C05C0400155DBB /* SceneDelegate.swift in Sources */,
 				FA481D7E25C325160051DB02 /* ForecastTableViewCell.swift in Sources */,
+				FADE32AA25D0495500C85419 /* ActiveCity.swift in Sources */,
 				FA27A84B25C1B6A200A9C687 /* TabBarController.swift in Sources */,
 				FA5F10F225C77F0E00DF3B94 /* Service.swift in Sources */,
 				FADE32A025CEFA6E00C85419 /* ErrorView.swift in Sources */,

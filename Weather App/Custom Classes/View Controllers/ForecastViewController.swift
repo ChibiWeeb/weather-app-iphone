@@ -26,6 +26,7 @@ class ForecastViewController: UIViewController {
     private let gradient = Gradient(gradientName: .background)
     private let forecastService = Service<ForecastResponse>()
     private var forecastTableData = [ForecastSection]()
+    private var loadedCity = ActiveCity.shared.name
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +35,13 @@ class ForecastViewController: UIViewController {
         errorView.reloadButton.addTarget(self, action: #selector(refresh), for: .touchUpInside)
         setupTableView()
         loadForecasts()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if (loadedCity != ActiveCity.shared.name) {
+            loadForecasts()
+        }
     }
     
     override func viewWillLayoutSubviews() {
@@ -61,10 +69,12 @@ class ForecastViewController: UIViewController {
     }
     
     private func loadForecasts() {
+        let activeCity = ActiveCity.shared.name ?? ""
         tableView.isHidden = true
         errorView.isHidden = true
         loader.startAnimating()
-        forecastService.getServiceResult(for: "Tbilisi") { [weak self] result in
+        
+        forecastService.getServiceResult(for: activeCity) { [weak self] result in
             guard let self = self else {return}
             DispatchQueue.main.async {
                 self.loader.stopAnimating()
@@ -73,6 +83,7 @@ class ForecastViewController: UIViewController {
                     self.forecastTableData = self.makeForecastTableData(from: forecastResult.list)
                     self.tableView.reloadData()
                     self.tableView.isHidden = false
+                    self.loadedCity = activeCity
                 case .failure(_):
                     self.errorView.isHidden = false
                 }
