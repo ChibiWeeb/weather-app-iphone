@@ -10,10 +10,13 @@ import CoreLocation
 
 class CurrentWeatherViewController: UIViewController {
     
+    @IBOutlet var mainContainerView: UIView!
     @IBOutlet var pageControl: UIPageControl!
     @IBOutlet var addButton: UIButton!
     @IBOutlet var addMenuView: UIView!
+    @IBOutlet var addMenuTextField: UITextField!
     @IBOutlet var addMenuAddButton: UIView!
+    @IBOutlet var addMenuLoader: UIActivityIndicatorView!
     @IBOutlet var addMenuConstraint: NSLayoutConstraint!
     @IBOutlet var loader: UIActivityIndicatorView!
     @IBOutlet var errorView: ErrorView!
@@ -71,8 +74,11 @@ class CurrentWeatherViewController: UIViewController {
     }
     
     @IBAction func handleAddingCity() {
-        let cityName = ""
-        addCity(cityName: cityName, isFoundLocation: false)
+        let cityName = addMenuTextField.text ?? ""
+        addMenuTextField.text = ""
+        addMenuAddButton.tintColor = .clear
+        addMenuLoader.startAnimating()
+        addCity(cityName: cityName, wasFoundWithGPS: false)
     }
     
     @IBAction func changeActiveCity() {
@@ -83,9 +89,9 @@ class CurrentWeatherViewController: UIViewController {
     }
     
     private func loadCurrentWeather() {
-        //TODO: Hide other staff
         let activeCity = ActiveCity.shared.name ?? ""
         DispatchQueue.main.async {
+            self.mainContainerView.isHidden = true
             self.errorView.isHidden = true
             self.loader.startAnimating()
         }
@@ -94,19 +100,20 @@ class CurrentWeatherViewController: UIViewController {
             guard let self = self else {return}
             DispatchQueue.main.async {
                 self.loader.stopAnimating()
+                self.mainContainerView.isHidden = false //TODO: Here for now
                 switch result {
                 case .success(let currentWeatherResult):
                     self.currentWeather = currentWeatherResult
                 case .failure(let error):
                     if (ServiceError.keyNotFound != error as? ServiceError) {
-                        self.errorView.isHidden = false
                     }
+                    self.mainContainerView.isHidden = false
                 }
             }
         }
     }
     
-    private func addCity(cityName: String, isFoundLocation: Bool) {
+    private func addCity(cityName: String, wasFoundWithGPS: Bool) {
         currentWeatherService.getServiceResult(for: cityName, at: nil) { result in
             switch result {
             case .success(let currentWeatherResult):
@@ -115,7 +122,7 @@ class CurrentWeatherViewController: UIViewController {
                 } else if (self.addedCities.count == 3) {
                     self.showErrorPopup(errorMessage: "Maximum numbers of 3 cities reached. Remove already added city if you want to add more")
                 } else {
-                    if (isFoundLocation) {
+                    if (wasFoundWithGPS) {
                         self.addedCities.insert(currentWeatherResult.name.lowercased(), at: 0)
                     } else {
                         self.addedCities.append(currentWeatherResult.name.lowercased())
@@ -125,9 +132,12 @@ class CurrentWeatherViewController: UIViewController {
                     self.loadCurrentWeather()
                     DispatchQueue.main.async {
                         self.pageControl.numberOfPages += 1
-                        if (isFoundLocation) {
+                        if (wasFoundWithGPS) {
                             self.pageControl.currentPage = 0
                         } else {
+                            self.addMenuLoader.stopAnimating()
+                            self.addMenuAddButton.tintColor = UIColor(named: "green-gradient-end")
+                            self.closeAddMenu()
                             self.pageControl.currentPage = self.pageControl.numberOfPages
                         }
                     }
@@ -223,7 +233,7 @@ extension CurrentWeatherViewController: CLLocationManagerDelegate {
                 switch result {
                 case .success(let currentWeatherResult):
                     if (!self.addedCities.contains(currentWeatherResult.name.lowercased())) {
-                        self.addCity(cityName: currentWeatherResult.name, isFoundLocation: true)
+                        self.addCity(cityName: currentWeatherResult.name, wasFoundWithGPS: true)
                         self.locationFound = true
                     }
                 case .failure(_):

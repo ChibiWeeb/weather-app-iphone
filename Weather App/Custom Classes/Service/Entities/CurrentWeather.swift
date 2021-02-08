@@ -7,15 +7,12 @@
 
 import Foundation
 
-//TODO: Check if everything is needed here
-
 struct CurrentWeatherResponse: Codable {
     let weather: [CurrentWeatherWeatherInfo]
     let main: CurrentWeatherMainInfo
     let wind: WindInfo
     let clouds: CloudsInfo
     let sys: SysInfo
-    let id: Int
     let name: String
 }
 

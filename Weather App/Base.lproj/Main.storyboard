@@ -133,11 +133,20 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large" weight="bold"/>
                                         </state>
+                                        <connections>
+                                            <action selector="handleAddingCity" destination="yWj-st-mMu" eventType="touchUpInside" id="zeB-qh-gWd"/>
+                                        </connections>
                                     </button>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="mSF-g3-90Y">
+                                        <rect key="frame" x="136.5" y="171.5" width="37" height="37"/>
+                                        <color key="color" name="green-gradient-end"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="mSF-g3-90Y" firstAttribute="centerX" secondItem="JbC-pn-ICZ" secondAttribute="centerX" id="4K6-k6-tnm"/>
                                     <constraint firstAttribute="bottom" secondItem="JbC-pn-ICZ" secondAttribute="bottom" constant="16" id="CrT-7T-pOX"/>
                                     <constraint firstItem="aJc-Rl-JNl" firstAttribute="top" secondItem="xX8-0H-8R3" secondAttribute="bottom" constant="16" id="Hdz-Ye-QuP"/>
+                                    <constraint firstItem="mSF-g3-90Y" firstAttribute="centerY" secondItem="JbC-pn-ICZ" secondAttribute="centerY" id="Mfk-bD-usw"/>
                                     <constraint firstItem="xX8-0H-8R3" firstAttribute="top" secondItem="W7o-8Q-kOi" secondAttribute="top" constant="16" id="Qfr-en-MiY"/>
                                     <constraint firstItem="xX8-0H-8R3" firstAttribute="centerX" secondItem="W7o-8Q-kOi" secondAttribute="centerX" id="SVc-bu-KMt"/>
                                     <constraint firstItem="aJc-Rl-JNl" firstAttribute="centerX" secondItem="W7o-8Q-kOi" secondAttribute="centerX" id="WWp-3d-r4a"/>
@@ -202,9 +211,12 @@
                         <outlet property="addButton" destination="iFn-fN-gP2" id="t96-u0-MUx"/>
                         <outlet property="addMenuAddButton" destination="JbC-pn-ICZ" id="fOp-Qc-LOc"/>
                         <outlet property="addMenuConstraint" destination="3DB-1o-XuA" id="hpI-fV-FGZ"/>
+                        <outlet property="addMenuLoader" destination="mSF-g3-90Y" id="lgZ-kT-9U1"/>
+                        <outlet property="addMenuTextField" destination="tum-fQ-7jY" id="ALk-aP-VSR"/>
                         <outlet property="addMenuView" destination="W7o-8Q-kOi" id="OQH-jM-pYx"/>
                         <outlet property="errorView" destination="vDq-rV-87v" id="Ptq-dU-ICL"/>
                         <outlet property="loader" destination="5nm-dF-R5r" id="zCE-3Y-1Lh"/>
+                        <outlet property="mainContainerView" destination="Vcs-GZ-6FA" id="DQj-Rw-0Mu"/>
                         <outlet property="pageControl" destination="uRN-K0-rPv" id="STV-zW-Iw0"/>
                     </connections>
                 </viewController>
