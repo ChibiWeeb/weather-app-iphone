@@ -10,13 +10,18 @@ import CoreLocation
 
 class CurrentWeatherViewController: UIViewController {
     
-    @IBOutlet var field: UITextField!
     @IBOutlet var pageControl: UIPageControl!
+    @IBOutlet var addButton: UIButton!
+    @IBOutlet var addMenuView: UIView!
+    @IBOutlet var addMenuAddButton: UIView!
+    @IBOutlet var addMenuConstraint: NSLayoutConstraint!
     @IBOutlet var loader: UIActivityIndicatorView!
     @IBOutlet var errorView: ErrorView!
     
     private final let addedCitiesKey = "added.cities"
-    private let gradient = Gradient(gradientName: .background)
+    private let backgroundGradient = Gradient(gradientName: .background)
+    private let addMenuGradient = Gradient(gradientName: .green)
+    private let blurredEffectView = UIVisualEffectView()
     private let currentWeatherService = Service<CurrentWeatherResponse>()
     private let locationManager = CLLocationManager()
     private var currentWeather: CurrentWeatherResponse? = nil
@@ -26,32 +31,47 @@ class CurrentWeatherViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(ActiveCity.shared.name ?? "")
-        print(UserDefaults.standard.array(forKey: "added.cities") ?? "")
-//                UserDefaults.standard.removeObject(forKey: "added.cities")
-//                return
+        addedCities = (UserDefaults.standard.array(forKey: addedCitiesKey) as? [String]) ?? []
+        ActiveCity.shared.name = (addedCities.count > 0) ? addedCities[0] : nil
+        
+        errorView.reloadButton.addTarget(self, action: #selector(refresh), for: .touchUpInside)
+        blurredEffectView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector (closeAddMenu)))
+        
+        pageControl.numberOfPages = addedCities.count
+        
+        addGradients()
+        addGlows()
         
         initCLLocation()
-        addedCities = (UserDefaults.standard.array(forKey: addedCitiesKey) as? [String]) ?? []
-        gradient.addBackgroundColor(to: view)
-        ActiveCity.shared.name = (addedCities.count > 0) ? addedCities[0] : nil
-        errorView.reloadButton.addTarget(self, action: #selector(refresh), for: .touchUpInside)
         loadCurrentWeather()
-        pageControl.numberOfPages = addedCities.count
     }
     
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         
-        gradient.updateFrameBounds(to: view.frame)
+        addRoundedCorners()
+        updateGradientFrames()
+        updateGlowPaths()
+        blurredEffectView.frame = view.bounds
     }
     
     @IBAction func refresh() {
         loadCurrentWeather()
+        closeAddMenu()
+    }
+    
+    @IBAction func openAddMenu() {
+        addBlur()
+        animateAddMenu(to: 0, over: 0.5)
+    }
+    
+    @objc func closeAddMenu() {
+        animateAddMenu(to: -700, over: 0.5)
+        removeBlur()
     }
     
     @IBAction func handleAddingCity() {
-        let cityName = field.text!
+        let cityName = ""
         addCity(cityName: cityName, isFoundLocation: false)
     }
     
@@ -142,6 +162,56 @@ class CurrentWeatherViewController: UIViewController {
             locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
             locationManager.startUpdatingLocation()
         }
+    }
+    
+    private func addGradients() {
+        backgroundGradient.addBackgroundColor(to: view)
+        addMenuGradient.addBackgroundColor(to: addMenuView)
+    }
+    
+    private func updateGradientFrames() {
+        backgroundGradient.updateFrameBounds(to: view.bounds)
+        addMenuGradient.updateFrameBounds(to: addMenuView.bounds)
+    }
+    
+    private func addGlows() {
+        Glow.addGlow(to: addButton)
+        Glow.addGlow(to: addMenuAddButton)
+    }
+    
+    private func updateGlowPaths() {
+        Glow.updateGlowPath(of: addButton)
+        Glow.updateGlowPath(of: addMenuAddButton)
+    }
+    
+    private func addRoundedCorners() {
+        makeCornersRounded(for: addButton.layer, factor: 0.5)
+        makeCornersRounded(for: addMenuAddButton.layer, factor: 0.5)
+        makeCornersRounded(for: addMenuView.layer, factor: 0.1)
+    }
+    
+    private func makeCornersRounded(for layer: CALayer, factor: CGFloat) {
+        layer.cornerRadius = layer.frame.width * factor
+    }
+    
+    private func animateAddMenu(to constraintConstant: CGFloat, over time: TimeInterval) {
+        UIView.animate(withDuration: time,
+                       animations: { [self] in
+                        addMenuConstraint.constant = constraintConstant
+                        view.layoutIfNeeded()
+        })
+    }
+    
+    private func addBlur() {
+        let blurEffect = UIBlurEffect(style: .dark)
+        blurredEffectView.effect = blurEffect
+        blurredEffectView.frame = view.bounds
+        view.addSubview(blurredEffectView)
+        addMenuView.superview?.bringSubviewToFront(addMenuView)
+    }
+    
+    private func removeBlur() {
+        blurredEffectView.removeFromSuperview()
     }
 }
 

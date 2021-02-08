@@ -14,10 +14,12 @@ class Gradient {
     init(gradientName: GradientNames) {
         gradientLayer = CAGradientLayer()
         gradientLayer.colors = gradientName.gradientColors
+
     }
     
     func addBackgroundColor(to view: UIView) {
         gradientLayer.frame = view.bounds
+        view.clipsToBounds = true
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
     

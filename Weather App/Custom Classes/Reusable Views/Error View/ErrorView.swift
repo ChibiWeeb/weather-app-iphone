@@ -35,7 +35,7 @@ class ErrorView: UIView {
     override func layoutSubviews() {
         reloadButton.layer.cornerRadius = reloadButton.layer.frame.width * 0.1
         
-        Glow.setGlow(to: reloadButton)
+        Glow.addGlow(to: reloadButton)
     }
     
 }

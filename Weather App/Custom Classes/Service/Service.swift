@@ -10,8 +10,7 @@ import CoreLocation
 
 class Service<T: Codable> {
     
-    //TODO: Handle errors
-    private let apiKey = "cf270b8b540ec2bbdc4c6aa1093b0653" //TODO: Move into Keychain
+    private final let apiKey = "cf270b8b540ec2bbdc4c6aa1093b0653"
     private var components = URLComponents()
     
     init() {

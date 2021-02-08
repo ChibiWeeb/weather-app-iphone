@@ -9,11 +9,15 @@ import UIKit
 
 class Glow {
     
-    static func setGlow(to view: UIView) {
+    static func addGlow(to view: UIView) {
         view.layer.shadowOffset = .zero
         view.layer.shadowColor = view.backgroundColor?.cgColor
         view.layer.shadowRadius = 10
-        view.layer.shadowOpacity = 1
+        view.layer.shadowOpacity = 0.5
+        view.layer.shadowPath = UIBezierPath(rect: view.bounds).cgPath
+    }
+    
+    static func updateGlowPath(of view: UIView) {
         view.layer.shadowPath = UIBezierPath(rect: view.bounds).cgPath
     }
 }
