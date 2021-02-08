@@ -13,6 +13,8 @@ class CurrentWeatherViewController: UIViewController {
     @IBOutlet var mainContainerView: UIView!
     @IBOutlet var pageControl: UIPageControl!
     @IBOutlet var addButton: UIButton!
+    @IBOutlet var addErrorView: UIStackView!
+    @IBOutlet var addErrorMessage: UILabel!
     @IBOutlet var addMenuView: UIView!
     @IBOutlet var addMenuTextField: UITextField!
     @IBOutlet var addMenuAddButton: UIView!
@@ -69,6 +71,7 @@ class CurrentWeatherViewController: UIViewController {
     }
     
     @objc func closeAddMenu() {
+        addErrorView.isHidden = true
         animateAddMenu(to: -700, over: 0.5)
         removeBlur()
     }
@@ -115,6 +118,10 @@ class CurrentWeatherViewController: UIViewController {
     
     private func addCity(cityName: String, wasFoundWithGPS: Bool) {
         currentWeatherService.getServiceResult(for: cityName, at: nil) { result in
+            DispatchQueue.main.async {
+                self.addMenuLoader.stopAnimating()
+                self.addMenuAddButton.tintColor = UIColor(named: "green-gradient-end")
+            }
             switch result {
             case .success(let currentWeatherResult):
                 if (self.addedCities.contains(currentWeatherResult.name.lowercased())) {
@@ -135,8 +142,6 @@ class CurrentWeatherViewController: UIViewController {
                         if (wasFoundWithGPS) {
                             self.pageControl.currentPage = 0
                         } else {
-                            self.addMenuLoader.stopAnimating()
-                            self.addMenuAddButton.tintColor = UIColor(named: "green-gradient-end")
                             self.closeAddMenu()
                             self.pageControl.currentPage = self.pageControl.numberOfPages
                         }
@@ -153,16 +158,25 @@ class CurrentWeatherViewController: UIViewController {
     }
     
     private func showErrorPopup(errorMessage: String) {
-        //TODO: Change to actual popup
         DispatchQueue.main.async {
-            let alertController = UIAlertController(
-                title: "Error Occured",
-                message: errorMessage,
-                preferredStyle: .alert
-            )
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
-            self.present(alertController, animated: true, completion: nil)
+            self.addErrorView.isHidden = true
+            self.addErrorMessage.text = errorMessage
+            self.addErrorView.isHidden = false
+            self.addPulseAnimation(view: self.addErrorView)
         }
+    }
+    
+    private func addPulseAnimation(view: UIView) {
+        let pulseAnimation = CASpringAnimation(keyPath: "transform.scale")
+        pulseAnimation.duration = 0.15
+        pulseAnimation.repeatCount = 3
+        pulseAnimation.fromValue = 0.97
+        pulseAnimation.toValue = 1.03
+        pulseAnimation.damping = 0.5
+        pulseAnimation.initialVelocity = 0.75
+        pulseAnimation.autoreverses = true
+        pulseAnimation.isRemovedOnCompletion = false
+        view.layer.add(pulseAnimation, forKey: "PulseAnimation")
     }
     
     private func initCLLocation() {
@@ -198,10 +212,11 @@ class CurrentWeatherViewController: UIViewController {
         makeCornersRounded(for: addButton.layer, factor: 0.5)
         makeCornersRounded(for: addMenuAddButton.layer, factor: 0.5)
         makeCornersRounded(for: addMenuView.layer, factor: 0.1)
+        makeCornersRounded(for: addErrorView.layer, factor: 0.2)
     }
     
     private func makeCornersRounded(for layer: CALayer, factor: CGFloat) {
-        layer.cornerRadius = layer.frame.width * factor
+        layer.cornerRadius = layer.frame.height * factor
     }
     
     private func animateAddMenu(to constraintConstant: CGFloat, over time: TimeInterval) {
@@ -218,6 +233,7 @@ class CurrentWeatherViewController: UIViewController {
         blurredEffectView.frame = view.bounds
         view.addSubview(blurredEffectView)
         addMenuView.superview?.bringSubviewToFront(addMenuView)
+        addErrorView.superview?.bringSubviewToFront(addErrorView)
     }
     
     private func removeBlur() {
