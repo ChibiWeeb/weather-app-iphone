@@ -74,7 +74,7 @@ class ForecastViewController: UIViewController {
         errorView.isHidden = true
         loader.startAnimating()
         
-        forecastService.getServiceResult(for: activeCity) { [weak self] result in
+        forecastService.getServiceResult(for: activeCity, at: nil) { [weak self] result in
             guard let self = self else {return}
             DispatchQueue.main.async {
                 self.loader.stopAnimating()

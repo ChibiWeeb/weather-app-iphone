@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 class Service<T: Codable> {
     
@@ -28,12 +29,20 @@ class Service<T: Codable> {
         }
     }
     
-    func getServiceResult(for city: String, completion: @escaping (Result<T, Error>) -> ()) {
-        let parameters = [
-            "q": city,
+    func getServiceResult(for city: String?, at location: CLLocationCoordinate2D?, completion: @escaping (Result<T, Error>) -> ()) {
+        var parameters = [
             "units": "metric",
             "appid": apiKey
         ]
+        if (city != nil) {
+            parameters["q"] = city ?? ""
+        } else if (location != nil) {
+            parameters["lat"] = location?.latitude.description ?? ""
+            parameters["lon"] = location?.longitude.description ?? ""
+        } else {
+            completion(.failure(ServiceError.invalidParameters))
+        }
+        
         components.queryItems = parameters.map { key, value in
             return URLQueryItem(name: key, value: value)
         }

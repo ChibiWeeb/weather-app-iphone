@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -35,29 +36,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFn-fN-gP2">
-                                <rect key="frame" x="184" y="433" width="46" height="30"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <action selector="addCity" destination="yWj-st-mMu" eventType="touchUpInside" id="Qlq-A7-u7H"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y4j-Om-X56">
-                                <rect key="frame" x="143" y="391" width="128" height="34"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="128" id="BEB-nl-wig"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uRN-K0-rPv">
-                                <rect key="frame" x="185" y="131" width="44.5" height="0.0"/>
-                                <color key="pageIndicatorTintColor" red="0.93725490199999995" green="0.96079045529999996" blue="0.9851929545" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="currentPageIndicatorTintColor" name="accent"/>
-                                <connections>
-                                    <action selector="changeActiveCity" destination="yWj-st-mMu" eventType="valueChanged" id="Qog-4M-Dhv"/>
-                                </connections>
-                            </pageControl>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vDq-rV-87v" customClass="ErrorView" customModule="Weather_App" customModuleProvider="target">
                                 <rect key="frame" x="32" y="152" width="350" height="565"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -66,22 +44,73 @@
                                 <rect key="frame" x="188.5" y="429.5" width="37" height="37"/>
                                 <color key="color" name="accent"/>
                             </activityIndicatorView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vcs-GZ-6FA">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <subviews>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uRN-K0-rPv">
+                                        <rect key="frame" x="184.5" y="16" width="45" height="0.0"/>
+                                        <color key="pageIndicatorTintColor" red="0.93725490199999995" green="0.96079045529999996" blue="0.9851929545" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="currentPageIndicatorTintColor" name="accent"/>
+                                        <connections>
+                                            <action selector="changeActiveCity" destination="yWj-st-mMu" eventType="valueChanged" id="Qog-4M-Dhv"/>
+                                        </connections>
+                                    </pageControl>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRe-Sm-b4C">
+                                        <rect key="frame" x="16" y="48" width="382" height="599"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFn-fN-gP2">
+                                        <rect key="frame" x="184" y="679" width="46" height="30"/>
+                                        <state key="normal" title="Button"/>
+                                        <connections>
+                                            <action selector="handleAddingCity" destination="yWj-st-mMu" eventType="touchUpInside" id="G53-oM-uIS"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="y4j-Om-X56">
+                                        <rect key="frame" x="246" y="675" width="128" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="128" id="BEB-nl-wig"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="iFn-fN-gP2" secondAttribute="bottom" constant="16" id="0ST-DC-UXJ">
+                                        <variation key="heightClass=compact-widthClass=regular" constant="4"/>
+                                    </constraint>
+                                    <constraint firstAttribute="bottom" secondItem="y4j-Om-X56" secondAttribute="bottom" constant="16" id="4po-DJ-8h8"/>
+                                    <constraint firstItem="y4j-Om-X56" firstAttribute="leading" secondItem="iFn-fN-gP2" secondAttribute="trailing" constant="16" id="9le-YD-lBP"/>
+                                    <constraint firstItem="iFn-fN-gP2" firstAttribute="centerX" secondItem="Vcs-GZ-6FA" secondAttribute="centerX" id="FMb-sX-i6R"/>
+                                    <constraint firstAttribute="trailing" secondItem="bRe-Sm-b4C" secondAttribute="trailing" constant="16" id="MHZ-wh-y5f"/>
+                                    <constraint firstItem="uRN-K0-rPv" firstAttribute="top" secondItem="Vcs-GZ-6FA" secondAttribute="top" constant="16" id="cVp-0X-vnv">
+                                        <variation key="heightClass=compact-widthClass=regular" constant="4"/>
+                                    </constraint>
+                                    <constraint firstItem="bRe-Sm-b4C" firstAttribute="top" secondItem="uRN-K0-rPv" secondAttribute="bottom" constant="32" id="ltk-eH-Jze">
+                                        <variation key="heightClass=compact-widthClass=regular" constant="8"/>
+                                    </constraint>
+                                    <constraint firstItem="bRe-Sm-b4C" firstAttribute="leading" secondItem="Vcs-GZ-6FA" secondAttribute="leading" constant="16" id="mKR-PY-wS4"/>
+                                    <constraint firstItem="uRN-K0-rPv" firstAttribute="centerX" secondItem="Vcs-GZ-6FA" secondAttribute="centerX" id="oOI-Qd-Y32"/>
+                                    <constraint firstItem="iFn-fN-gP2" firstAttribute="top" secondItem="bRe-Sm-b4C" secondAttribute="bottom" constant="32" id="r8i-2Y-yZT">
+                                        <variation key="heightClass=compact-widthClass=regular" constant="8"/>
+                                    </constraint>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="W2a-ga-PSL"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="uRN-K0-rPv" firstAttribute="top" secondItem="W2a-ga-PSL" secondAttribute="top" constant="43" id="5db-1Q-Ce5"/>
-                            <constraint firstItem="iFn-fN-gP2" firstAttribute="centerX" secondItem="3hG-3u-rxS" secondAttribute="centerX" id="IYW-vC-sbI"/>
                             <constraint firstItem="W2a-ga-PSL" firstAttribute="bottom" secondItem="vDq-rV-87v" secondAttribute="bottom" constant="96" id="JW6-rb-joM"/>
+                            <constraint firstItem="Vcs-GZ-6FA" firstAttribute="top" secondItem="W2a-ga-PSL" secondAttribute="top" id="N8i-Jk-CXp"/>
+                            <constraint firstItem="W2a-ga-PSL" firstAttribute="bottom" secondItem="Vcs-GZ-6FA" secondAttribute="bottom" id="Ooe-yJ-r1l"/>
                             <constraint firstItem="5nm-dF-R5r" firstAttribute="centerY" secondItem="3hG-3u-rxS" secondAttribute="centerY" id="Phh-87-5Oh"/>
-                            <constraint firstItem="y4j-Om-X56" firstAttribute="centerX" secondItem="3hG-3u-rxS" secondAttribute="centerX" id="VVi-lD-Nkh"/>
                             <constraint firstItem="5nm-dF-R5r" firstAttribute="centerX" secondItem="3hG-3u-rxS" secondAttribute="centerX" id="bdl-DA-6nW"/>
-                            <constraint firstItem="iFn-fN-gP2" firstAttribute="centerY" secondItem="3hG-3u-rxS" secondAttribute="centerY" id="cSi-gW-1rS"/>
+                            <constraint firstItem="W2a-ga-PSL" firstAttribute="trailing" secondItem="Vcs-GZ-6FA" secondAttribute="trailing" id="ffC-Sh-n6y"/>
                             <constraint firstItem="vDq-rV-87v" firstAttribute="leading" secondItem="W2a-ga-PSL" secondAttribute="leading" constant="32" id="lAP-cI-pYH"/>
                             <constraint firstItem="vDq-rV-87v" firstAttribute="top" secondItem="W2a-ga-PSL" secondAttribute="top" constant="64" id="lGd-Ex-kKl"/>
-                            <constraint firstItem="iFn-fN-gP2" firstAttribute="top" secondItem="y4j-Om-X56" secondAttribute="bottom" constant="8" id="oBV-b5-K9P"/>
                             <constraint firstItem="W2a-ga-PSL" firstAttribute="trailing" secondItem="vDq-rV-87v" secondAttribute="trailing" constant="32" id="sEA-mI-B7i"/>
-                            <constraint firstItem="uRN-K0-rPv" firstAttribute="centerX" secondItem="3hG-3u-rxS" secondAttribute="centerX" id="zNE-bo-nOA"/>
+                            <constraint firstItem="Vcs-GZ-6FA" firstAttribute="leading" secondItem="W2a-ga-PSL" secondAttribute="leading" id="wcO-fq-q0Y"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Today" id="Yj6-rL-0U8">
@@ -206,5 +235,8 @@
         <namedColor name="accent">
             <color red="0.9882352941176471" green="0.91764705882352937" blue="0.16078431372549021" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

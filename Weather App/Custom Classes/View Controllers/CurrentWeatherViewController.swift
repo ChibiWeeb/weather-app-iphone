@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class CurrentWeatherViewController: UIViewController {
     
@@ -17,20 +18,23 @@ class CurrentWeatherViewController: UIViewController {
     private final let addedCitiesKey = "added.cities"
     private let gradient = Gradient(gradientName: .background)
     private let currentWeatherService = Service<CurrentWeatherResponse>()
+    private let locationManager = CLLocationManager()
     private var currentWeather: CurrentWeatherResponse? = nil
     private var addedCities: [String] = []
+    private var locationFound = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print(ActiveCity.shared.name ?? "")
         print(UserDefaults.standard.array(forKey: "added.cities") ?? "")
-        //        UserDefaults.standard.removeObject(forKey: "added.cities")
-        //        return
+//                UserDefaults.standard.removeObject(forKey: "added.cities")
+//                return
         
+        initCLLocation()
         addedCities = (UserDefaults.standard.array(forKey: addedCitiesKey) as? [String]) ?? []
         gradient.addBackgroundColor(to: view)
-        setActiveCity()
+        ActiveCity.shared.name = (addedCities.count > 0) ? addedCities[0] : nil
         errorView.reloadButton.addTarget(self, action: #selector(refresh), for: .touchUpInside)
         loadCurrentWeather()
         pageControl.numberOfPages = addedCities.count
@@ -46,39 +50,16 @@ class CurrentWeatherViewController: UIViewController {
         loadCurrentWeather()
     }
     
-    @IBAction func addCity() {
+    @IBAction func handleAddingCity() {
         let cityName = field.text!
-        
-        currentWeatherService.getServiceResult(for: cityName) { result in
-            switch result {
-            case .success(let currentWeatherResult):
-                if (self.addedCities.contains(currentWeatherResult.name.lowercased())) {
-                    self.showErrorPopup(errorMessage: "City already added")
-                }else if (self.addedCities.count == 3) {
-                    self.showErrorPopup(errorMessage: "Maximum numbers of 3 cities reached. Remove already added city if you want to add more")
-                } else {
-                    self.addedCities.append(currentWeatherResult.name.lowercased())
-                    ActiveCity.shared.name = currentWeatherResult.name.lowercased()
-                    UserDefaults.standard.set(self.addedCities, forKey: self.addedCitiesKey)
-                    self.loadCurrentWeather()
-                    DispatchQueue.main.async {
-                        self.pageControl.numberOfPages += 1
-                        self.pageControl.currentPage = self.pageControl.numberOfPages
-                    }
-                }
-            case .failure(let error):
-                if (ServiceError.keyNotFound == error as? ServiceError) {
-                    self.showErrorPopup(errorMessage: "City not found")
-                } else {
-                    self.showErrorPopup(errorMessage: "Some random error happened")
-                }
-            }
-        }
+        addCity(cityName: cityName, isFoundLocation: false)
     }
     
-    private func setActiveCity() {
-        //TODO: Do CLLocation stuff.
-        ActiveCity.shared.name = (addedCities.count > 0) ? addedCities[0] : nil
+    @IBAction func changeActiveCity() {
+        let pageControlCurrentPage = pageControl.currentPage
+        if (ActiveCity.shared.name != addedCities[pageControlCurrentPage]) {
+            ActiveCity.shared.name = addedCities[pageControlCurrentPage]
+        }
     }
     
     private func loadCurrentWeather() {
@@ -89,20 +70,53 @@ class CurrentWeatherViewController: UIViewController {
             self.loader.startAnimating()
         }
         
-        currentWeatherService.getServiceResult(for: activeCity) { [weak self] result in
+        currentWeatherService.getServiceResult(for: activeCity, at: nil) { [weak self] result in
             guard let self = self else {return}
             DispatchQueue.main.async {
                 self.loader.stopAnimating()
                 switch result {
                 case .success(let currentWeatherResult):
                     self.currentWeather = currentWeatherResult
-                    print(self.currentWeather ?? "")
                 case .failure(let error):
-                    if (ServiceError.keyNotFound == error as? ServiceError) {
-                        
-                    } else {
+                    if (ServiceError.keyNotFound != error as? ServiceError) {
                         self.errorView.isHidden = false
                     }
+                }
+            }
+        }
+    }
+    
+    private func addCity(cityName: String, isFoundLocation: Bool) {
+        currentWeatherService.getServiceResult(for: cityName, at: nil) { result in
+            switch result {
+            case .success(let currentWeatherResult):
+                if (self.addedCities.contains(currentWeatherResult.name.lowercased())) {
+                    self.showErrorPopup(errorMessage: "City already added")
+                } else if (self.addedCities.count == 3) {
+                    self.showErrorPopup(errorMessage: "Maximum numbers of 3 cities reached. Remove already added city if you want to add more")
+                } else {
+                    if (isFoundLocation) {
+                        self.addedCities.insert(currentWeatherResult.name.lowercased(), at: 0)
+                    } else {
+                        self.addedCities.append(currentWeatherResult.name.lowercased())
+                    }
+                    ActiveCity.shared.name = currentWeatherResult.name.lowercased()
+                    UserDefaults.standard.set(self.addedCities, forKey: self.addedCitiesKey)
+                    self.loadCurrentWeather()
+                    DispatchQueue.main.async {
+                        self.pageControl.numberOfPages += 1
+                        if (isFoundLocation) {
+                            self.pageControl.currentPage = 0
+                        } else {
+                            self.pageControl.currentPage = self.pageControl.numberOfPages
+                        }
+                    }
+                }
+            case .failure(let error):
+                if (ServiceError.keyNotFound == error as? ServiceError) {
+                    self.showErrorPopup(errorMessage: "City not found")
+                } else {
+                    self.showErrorPopup(errorMessage: "Some random error happened")
                 }
             }
         }
@@ -121,10 +135,31 @@ class CurrentWeatherViewController: UIViewController {
         }
     }
     
-    @IBAction func changeActiveCity() {
-        let pageControlCurrentPage = pageControl.currentPage
-        if (ActiveCity.shared.name != addedCities[pageControlCurrentPage]) {
-            ActiveCity.shared.name = addedCities[pageControlCurrentPage]
+    private func initCLLocation() {
+        locationManager.requestWhenInUseAuthorization()
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+            locationManager.startUpdatingLocation()
+        }
+    }
+}
+
+extension CurrentWeatherViewController: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let coordinate: CLLocationCoordinate2D = manager.location?.coordinate else { return }
+        if (!locationFound) {
+            currentWeatherService.getServiceResult(for: nil, at: coordinate) { result in
+                switch result {
+                case .success(let currentWeatherResult):
+                    if (!self.addedCities.contains(currentWeatherResult.name.lowercased())) {
+                        self.addCity(cityName: currentWeatherResult.name, isFoundLocation: true)
+                        self.locationFound = true
+                    }
+                case .failure(_):
+                    break
+                }
+            }
         }
     }
 }
