@@ -170,8 +170,8 @@ class CurrentWeatherViewController: UIViewController {
         let pulseAnimation = CASpringAnimation(keyPath: "transform.scale")
         pulseAnimation.duration = 0.15
         pulseAnimation.repeatCount = 3
-        pulseAnimation.fromValue = 0.97
-        pulseAnimation.toValue = 1.03
+        pulseAnimation.fromValue = 0.98
+        pulseAnimation.toValue = 1.02
         pulseAnimation.damping = 0.5
         pulseAnimation.initialVelocity = 0.75
         pulseAnimation.autoreverses = true
