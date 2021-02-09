@@ -5,7 +5,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -116,18 +115,18 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vcs-GZ-6FA">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
                                 <subviews>
-                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="uRN-K0-rPv">
-                                        <rect key="frame" x="185" y="16" width="44.5" height="0.0"/>
+                                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="1" translatesAutoresizingMaskIntoConstraints="NO" id="uRN-K0-rPv">
+                                        <rect key="frame" x="165" y="555.5" width="84.5" height="27.5"/>
                                         <color key="pageIndicatorTintColor" red="0.93725490199999995" green="0.96079045529999996" blue="0.9851929545" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="currentPageIndicatorTintColor" name="accent"/>
                                         <connections>
-                                            <action selector="changeActiveCity" destination="yWj-st-mMu" eventType="valueChanged" id="Qog-4M-Dhv"/>
+                                            <action selector="changeActiveCityWithPageControl" destination="yWj-st-mMu" eventType="valueChanged" id="bvL-FL-xLf"/>
                                         </connections>
                                     </pageControl>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QLp-tX-GrF">
-                                        <rect key="frame" x="0.0" y="16" width="414" height="631"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="frh-Ll-Zde">
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" keyboardDismissMode="onDrag" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QLp-tX-GrF">
+                                        <rect key="frame" x="0.0" y="16" width="414" height="531.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="frh-Ll-Zde" customClass="UPCarouselFlowLayout" customModule="UPCarouselFlowLayout">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -158,23 +157,32 @@
                                             <action selector="openAddMenu" destination="yWj-st-mMu" eventType="touchUpInside" id="BII-YL-dfU"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I'm bad at programming, use page control to move cities please" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3kj-MO-CXO">
+                                        <rect key="frame" x="107" y="612.5" width="200" height="26.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="200" id="tCm-Xp-zRh"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="iFn-fN-gP2" secondAttribute="bottom" constant="16" id="0ST-DC-UXJ">
-                                        <variation key="heightClass=compact-widthClass=regular" constant="-16"/>
+                                        <variation key="heightClass=compact-widthClass=regular" constant="-32"/>
                                     </constraint>
-                                    <constraint firstItem="iFn-fN-gP2" firstAttribute="top" secondItem="QLp-tX-GrF" secondAttribute="bottom" id="3dl-em-nYs"/>
-                                    <constraint firstItem="QLp-tX-GrF" firstAttribute="top" secondItem="uRN-K0-rPv" secondAttribute="bottom" id="DdC-lI-qng"/>
+                                    <constraint firstItem="uRN-K0-rPv" firstAttribute="top" secondItem="QLp-tX-GrF" secondAttribute="bottom" constant="8" id="3dl-em-nYs"/>
+                                    <constraint firstItem="3kj-MO-CXO" firstAttribute="centerX" secondItem="Vcs-GZ-6FA" secondAttribute="centerX" id="AUD-sv-a34"/>
+                                    <constraint firstItem="iFn-fN-gP2" firstAttribute="top" secondItem="uRN-K0-rPv" secondAttribute="bottom" constant="64" id="Da3-aw-34y"/>
+                                    <constraint firstItem="QLp-tX-GrF" firstAttribute="top" secondItem="Vcs-GZ-6FA" secondAttribute="top" constant="16" id="DdC-lI-qng"/>
                                     <constraint firstItem="iFn-fN-gP2" firstAttribute="centerX" secondItem="Vcs-GZ-6FA" secondAttribute="centerX" id="FMb-sX-i6R"/>
                                     <constraint firstItem="iFn-fN-gP2" firstAttribute="height" secondItem="Vcs-GZ-6FA" secondAttribute="height" multiplier="0.2" id="KvX-aK-cXX"/>
                                     <constraint firstAttribute="trailing" secondItem="QLp-tX-GrF" secondAttribute="trailing" id="VAO-2i-fME"/>
                                     <constraint firstItem="QLp-tX-GrF" firstAttribute="leading" secondItem="Vcs-GZ-6FA" secondAttribute="leading" id="Xwf-id-AbO"/>
                                     <constraint firstItem="iFn-fN-gP2" firstAttribute="width" secondItem="Vcs-GZ-6FA" secondAttribute="width" multiplier="0.15" id="aTG-fm-hYX"/>
-                                    <constraint firstItem="uRN-K0-rPv" firstAttribute="top" secondItem="Vcs-GZ-6FA" secondAttribute="top" constant="16" id="cVp-0X-vnv">
-                                        <variation key="heightClass=compact-widthClass=regular" constant="4"/>
-                                    </constraint>
                                     <constraint firstItem="uRN-K0-rPv" firstAttribute="centerX" secondItem="Vcs-GZ-6FA" secondAttribute="centerX" id="oOI-Qd-Y32"/>
+                                    <constraint firstItem="iFn-fN-gP2" firstAttribute="top" secondItem="3kj-MO-CXO" secondAttribute="bottom" constant="8" id="wRq-Sp-5KE"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -257,10 +265,11 @@
                         <outlet property="addMenuLoader" destination="mSF-g3-90Y" id="lgZ-kT-9U1"/>
                         <outlet property="addMenuTextField" destination="tum-fQ-7jY" id="ALk-aP-VSR"/>
                         <outlet property="addMenuView" destination="W7o-8Q-kOi" id="OQH-jM-pYx"/>
+                        <outlet property="currentWeatherCollectionView" destination="QLp-tX-GrF" id="acM-eP-EG5"/>
                         <outlet property="errorView" destination="vDq-rV-87v" id="Ptq-dU-ICL"/>
                         <outlet property="loader" destination="5nm-dF-R5r" id="zCE-3Y-1Lh"/>
                         <outlet property="mainContainerView" destination="Vcs-GZ-6FA" id="DQj-Rw-0Mu"/>
-                        <outlet property="pageControl" destination="uRN-K0-rPv" id="STV-zW-Iw0"/>
+                        <outlet property="pageControl" destination="uRN-K0-rPv" id="72i-wu-NfQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hla-Xq-dzA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -378,8 +387,5 @@
         <namedColor name="green-gradient-end">
             <color red="0.23600000143051147" green="0.67299997806549072" blue="0.60399997234344482" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

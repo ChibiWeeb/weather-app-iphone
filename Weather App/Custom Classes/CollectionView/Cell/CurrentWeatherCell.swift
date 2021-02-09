@@ -40,7 +40,9 @@ class CurrentWeatherCell: UICollectionViewCell {
             Glow.addGlow(to: cellView)
         }
         
-        cityAndCountryLabel.text = currentWeather.sys.country + "," + currentWeather.name
+        let current = Locale(identifier: "en_US")
+        let countryName = current.localizedString(forRegionCode: currentWeather.sys.country) ?? ""
+        cityAndCountryLabel.text = currentWeather.name + ", " + countryName
         
         var temperature = currentWeather.main.temp.rounded()
         if (currentWeather.main.temp > -1 && currentWeather.main.temp < 0) {
@@ -54,7 +56,7 @@ class CurrentWeatherCell: UICollectionViewCell {
         
         humidityLabel.text = String(describing: currentWeather.main.humidity) + " mm"
         
-        windSpeedLabel.text = String(describing: currentWeather.wind.speed * 3.6) + " km/h"
+        windSpeedLabel.text = String(format: "%.2f", currentWeather.wind.speed * 3.6) + " km/h"
         
         windDirectionLabel.text = windDirectionFromDegrees(degrees: Double(currentWeather.wind.deg))
     }
