@@ -5,6 +5,8 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -122,10 +124,26 @@
                                             <action selector="changeActiveCity" destination="yWj-st-mMu" eventType="valueChanged" id="Qog-4M-Dhv"/>
                                         </connections>
                                     </pageControl>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bRe-Sm-b4C">
-                                        <rect key="frame" x="0.0" y="48" width="414" height="567"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </view>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="QLp-tX-GrF">
+                                        <rect key="frame" x="0.0" y="16" width="414" height="631"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="frh-Ll-Zde">
+                                            <size key="itemSize" width="128" height="128"/>
+                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                        </collectionViewFlowLayout>
+                                        <cells>
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="TTQ-dK-veM">
+                                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2Ka-rP-VHZ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </collectionViewCellContentView>
+                                            </collectionViewCell>
+                                        </cells>
+                                    </collectionView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iFn-fN-gP2">
                                         <rect key="frame" x="176" y="647" width="62" height="62"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -146,16 +164,16 @@
                                     <constraint firstAttribute="bottom" secondItem="iFn-fN-gP2" secondAttribute="bottom" constant="16" id="0ST-DC-UXJ">
                                         <variation key="heightClass=compact-widthClass=regular" constant="-16"/>
                                     </constraint>
+                                    <constraint firstItem="iFn-fN-gP2" firstAttribute="top" secondItem="QLp-tX-GrF" secondAttribute="bottom" id="3dl-em-nYs"/>
+                                    <constraint firstItem="QLp-tX-GrF" firstAttribute="top" secondItem="uRN-K0-rPv" secondAttribute="bottom" id="DdC-lI-qng"/>
                                     <constraint firstItem="iFn-fN-gP2" firstAttribute="centerX" secondItem="Vcs-GZ-6FA" secondAttribute="centerX" id="FMb-sX-i6R"/>
                                     <constraint firstItem="iFn-fN-gP2" firstAttribute="height" secondItem="Vcs-GZ-6FA" secondAttribute="height" multiplier="0.2" id="KvX-aK-cXX"/>
-                                    <constraint firstAttribute="trailing" secondItem="bRe-Sm-b4C" secondAttribute="trailing" id="MHZ-wh-y5f"/>
-                                    <constraint firstItem="bRe-Sm-b4C" firstAttribute="top" secondItem="uRN-K0-rPv" secondAttribute="bottom" constant="32" id="NUo-1E-e85"/>
-                                    <constraint firstItem="iFn-fN-gP2" firstAttribute="top" secondItem="bRe-Sm-b4C" secondAttribute="bottom" constant="32" id="aOy-HM-kfb"/>
+                                    <constraint firstAttribute="trailing" secondItem="QLp-tX-GrF" secondAttribute="trailing" id="VAO-2i-fME"/>
+                                    <constraint firstItem="QLp-tX-GrF" firstAttribute="leading" secondItem="Vcs-GZ-6FA" secondAttribute="leading" id="Xwf-id-AbO"/>
                                     <constraint firstItem="iFn-fN-gP2" firstAttribute="width" secondItem="Vcs-GZ-6FA" secondAttribute="width" multiplier="0.15" id="aTG-fm-hYX"/>
                                     <constraint firstItem="uRN-K0-rPv" firstAttribute="top" secondItem="Vcs-GZ-6FA" secondAttribute="top" constant="16" id="cVp-0X-vnv">
                                         <variation key="heightClass=compact-widthClass=regular" constant="4"/>
                                     </constraint>
-                                    <constraint firstItem="bRe-Sm-b4C" firstAttribute="leading" secondItem="Vcs-GZ-6FA" secondAttribute="leading" id="mKR-PY-wS4"/>
                                     <constraint firstItem="uRN-K0-rPv" firstAttribute="centerX" secondItem="Vcs-GZ-6FA" secondAttribute="centerX" id="oOI-Qd-Y32"/>
                                 </constraints>
                                 <variation key="default">
@@ -360,5 +378,8 @@
         <namedColor name="green-gradient-end">
             <color red="0.23600000143051147" green="0.67299997806549072" blue="0.60399997234344482" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

@@ -30,6 +30,8 @@
 		FADE32A425CEFB1400C85419 /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = FADE32A325CEFB1400C85419 /* ErrorView.xib */; };
 		FADE32A725CF1B4500C85419 /* Glow.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE32A625CF1B4400C85419 /* Glow.swift */; };
 		FADE32AA25D0495500C85419 /* ActiveCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE32A925D0495500C85419 /* ActiveCity.swift */; };
+		FADE32D025D1ABEE00C85419 /* CurrentWeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE32CE25D1ABEE00C85419 /* CurrentWeatherCell.swift */; };
+		FADE32D125D1ABEE00C85419 /* CurrentWeatherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FADE32CF25D1ABEE00C85419 /* CurrentWeatherCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +61,8 @@
 		FADE32A325CEFB1400C85419 /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		FADE32A625CF1B4400C85419 /* Glow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Glow.swift; sourceTree = "<group>"; };
 		FADE32A925D0495500C85419 /* ActiveCity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveCity.swift; sourceTree = "<group>"; };
+		FADE32CE25D1ABEE00C85419 /* CurrentWeatherCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherCell.swift; sourceTree = "<group>"; };
+		FADE32CF25D1ABEE00C85419 /* CurrentWeatherCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CurrentWeatherCell.xib; sourceTree = "<group>"; };
 		FD90125F82240E4F7BC5AAA5 /* Pods-Weather App.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather App.debug.xcconfig"; path = "Target Support Files/Pods-Weather App/Pods-Weather App.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -103,9 +107,10 @@
 		FA27A85625C200AF00A9C687 /* Custom Classes */ = {
 			isa = PBXGroup;
 			children = (
+				FADE32CC25D1ABC100C85419 /* CollectionView */,
+				FA481D7A25C321910051DB02 /* Table View */,
 				FADE329D25CEFA2000C85419 /* Reusable Views */,
 				FA481D8125C474060051DB02 /* Service */,
-				FA481D7A25C321910051DB02 /* Table View */,
 				FA481D7625C21A090051DB02 /* Auxiliary */,
 				FA27A85825C2012D00A9C687 /* Navigation Bar */,
 				FA27A85725C2011300A9C687 /* Tab Bar */,
@@ -235,6 +240,23 @@
 			path = "Error View";
 			sourceTree = "<group>";
 		};
+		FADE32CC25D1ABC100C85419 /* CollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				FADE32CD25D1ABCD00C85419 /* Cell */,
+			);
+			path = CollectionView;
+			sourceTree = "<group>";
+		};
+		FADE32CD25D1ABCD00C85419 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				FADE32CE25D1ABEE00C85419 /* CurrentWeatherCell.swift */,
+				FADE32CF25D1ABEE00C85419 /* CurrentWeatherCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -299,6 +321,7 @@
 				FA96BCC925C05C0600155DBB /* LaunchScreen.storyboard in Resources */,
 				FADE32A425CEFB1400C85419 /* ErrorView.xib in Resources */,
 				FA96BCC625C05C0600155DBB /* Assets.xcassets in Resources */,
+				FADE32D125D1ABEE00C85419 /* CurrentWeatherCell.xib in Resources */,
 				FA96BCC125C05C0400155DBB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -363,6 +386,7 @@
 				FA96BCBC25C05C0400155DBB /* SceneDelegate.swift in Sources */,
 				FA481D7E25C325160051DB02 /* ForecastTableViewCell.swift in Sources */,
 				FADE32AA25D0495500C85419 /* ActiveCity.swift in Sources */,
+				FADE32D025D1ABEE00C85419 /* CurrentWeatherCell.swift in Sources */,
 				FA27A84B25C1B6A200A9C687 /* TabBarController.swift in Sources */,
 				FA5F10F225C77F0E00DF3B94 /* Service.swift in Sources */,
 				FADE32A025CEFA6E00C85419 /* ErrorView.swift in Sources */,
