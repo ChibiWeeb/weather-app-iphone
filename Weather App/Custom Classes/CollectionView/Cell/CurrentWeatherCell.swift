@@ -24,16 +24,21 @@ class CurrentWeatherCell: UICollectionViewCell {
     func configure(with currentWeather: CurrentWeatherResponse, at index: Int) {
         switch index {
         case 0:
+            cellView.backgroundColor = UIColor(named: "green-gradient-start")
             gradient = Gradient(gradientName: .green)
         case 1:
+            cellView.backgroundColor = UIColor(named: "blue-gradient-start")
             gradient = Gradient(gradientName: .blue)
         case 2:
+            cellView.backgroundColor = UIColor(named: "ochre-gradient-start")
             gradient = Gradient(gradientName: .ochre)
         default:
             break
         }
-        gradient?.addBackgroundColor(to: cellView)
-        Glow.addGlow(to: cellView)
+        if (gradient != nil) {
+            gradient?.addBackgroundColor(to: cellView)
+            Glow.addGlow(to: cellView)
+        }
         
         cityAndCountryLabel.text = currentWeather.sys.country + "," + currentWeather.name
         
@@ -62,13 +67,14 @@ class CurrentWeatherCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
     
     override func layoutSubviews() {
         cellView.layer.cornerRadius = cellView.layer.frame.width * 0.1
-        gradient?.updateFrameBounds(to: cellView.bounds)
-        Glow.updateGlowPath(of: cellView)
+        if (gradient != nil) {
+            gradient?.updateFrameBounds(to: cellView.bounds)
+            Glow.updateGlowPath(of: cellView)
+        }
     }
 
 }
