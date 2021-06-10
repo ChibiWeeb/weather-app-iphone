@@ -23,6 +23,7 @@
 		FA96BCC125C05C0400155DBB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA96BCBF25C05C0400155DBB /* Main.storyboard */; };
 		FA96BCC625C05C0600155DBB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA96BCC525C05C0600155DBB /* Assets.xcassets */; };
 		FA96BCC925C05C0600155DBB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA96BCC725C05C0600155DBB /* LaunchScreen.storyboard */; };
+		FAB41E9A26721A56006E9667 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB41E9926721A56006E9667 /* APIKeys.swift */; };
 		FADE328B25CDB64700C85419 /* ForecastTableViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE328A25CDB64700C85419 /* ForecastTableViewHeader.swift */; };
 		FADE328F25CDB68F00C85419 /* ForecastTableViewHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = FADE328E25CDB68F00C85419 /* ForecastTableViewHeader.xib */; };
 		FADE329625CDCF2200C85419 /* FormattedDay.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADE329525CDCF2200C85419 /* FormattedDay.swift */; };
@@ -54,6 +55,7 @@
 		FA96BCC525C05C0600155DBB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FA96BCC825C05C0600155DBB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FA96BCCA25C05C0600155DBB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FAB41E9926721A56006E9667 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		FADE328A25CDB64700C85419 /* ForecastTableViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastTableViewHeader.swift; sourceTree = "<group>"; };
 		FADE328E25CDB68F00C85419 /* ForecastTableViewHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForecastTableViewHeader.xib; sourceTree = "<group>"; };
 		FADE329525CDCF2200C85419 /* FormattedDay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattedDay.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			children = (
 				FA481D8225C474180051DB02 /* Entities */,
 				FA5F10F125C77F0E00DF3B94 /* Service.swift */,
+				FAB41E9926721A56006E9667 /* APIKeys.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -391,6 +394,7 @@
 				FA5F10F225C77F0E00DF3B94 /* Service.swift in Sources */,
 				FADE32A025CEFA6E00C85419 /* ErrorView.swift in Sources */,
 				FA481D7825C21A860051DB02 /* Gradient.swift in Sources */,
+				FAB41E9A26721A56006E9667 /* APIKeys.swift in Sources */,
 				FADE328B25CDB64700C85419 /* ForecastTableViewHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

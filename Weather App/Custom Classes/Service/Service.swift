@@ -10,7 +10,7 @@ import CoreLocation
 
 class Service<T: Codable> {
     
-    private final let apiKey = "cf270b8b540ec2bbdc4c6aa1093b0653"
+    private final let apiKey = openWeatherAPIKey
     private var components = URLComponents()
     
     init() {
