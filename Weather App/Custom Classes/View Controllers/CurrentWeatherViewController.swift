@@ -39,7 +39,7 @@ class CurrentWeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+//        TODO: Make this work
 //        let addedCities = (UserDefaults.standard.array(forKey: addedCitiesKey) as? [String]) ?? []
 //        loadWeatherForAddedCities(addedCities: addedCities)
         
@@ -227,6 +227,7 @@ class CurrentWeatherViewController: UIViewController {
                     } else {
                         self.addedWeathers.append(currentWeatherResult)
                     }
+                    ActiveCity.shared.name = currentWeatherResult.name
 //                    let addedCities = self.addedWeathers.map {$0.name.lowercased()}
 //                    UserDefaults.standard.set(addedCities, forKey: self.addedCitiesKey)
                     DispatchQueue.main.async {
