@@ -20,7 +20,6 @@ class CurrentWeatherCell: UICollectionViewCell {
 
     private var gradient: Gradient? = nil
     
-    //TODO: Use reusable view for bottom views
     func configure(with currentWeather: CurrentWeatherResponse, at index: Int) {
         switch index {
         case 0:

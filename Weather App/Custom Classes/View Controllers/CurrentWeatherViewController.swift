@@ -25,7 +25,6 @@ class CurrentWeatherViewController: UIViewController {
     @IBOutlet var loader: UIActivityIndicatorView!
     @IBOutlet var errorView: ErrorView!
     
-//    private final let addedCitiesKey = "added.cities"
     private final let collectionViewCellName = "CurrentWeatherCell"
     
     private let backgroundGradient = Gradient(gradientName: .background)
@@ -39,9 +38,6 @@ class CurrentWeatherViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        TODO: Make this work
-//        let addedCities = (UserDefaults.standard.array(forKey: addedCitiesKey) as? [String]) ?? []
-//        loadWeatherForAddedCities(addedCities: addedCities)
         
         ActiveCity.shared.name = (addedWeathers.count > 0) ? addedWeathers[0].name : nil
         
@@ -193,7 +189,7 @@ class CurrentWeatherViewController: UIViewController {
             guard let self = self else {return}
             DispatchQueue.main.async {
                 self.loader.stopAnimating()
-                self.mainContainerView.isHidden = false //TODO: Here for now
+                self.mainContainerView.isHidden = false
                 switch result {
                 case .success(let currentWeatherResult):
                     let currentWeather = currentWeatherResult
@@ -228,8 +224,6 @@ class CurrentWeatherViewController: UIViewController {
                         self.addedWeathers.append(currentWeatherResult)
                     }
                     ActiveCity.shared.name = currentWeatherResult.name
-//                    let addedCities = self.addedWeathers.map {$0.name.lowercased()}
-//                    UserDefaults.standard.set(addedCities, forKey: self.addedCitiesKey)
                     DispatchQueue.main.async {
                         self.pageControl.numberOfPages += 1
                         if (wasFoundWithGPS) {
